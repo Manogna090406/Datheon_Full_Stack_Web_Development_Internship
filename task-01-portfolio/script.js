@@ -1,133 +1,151 @@
-(() => {
-  "use strict";
+document.addEventListener("DOMContentLoaded", () => {
+  const htmlEl = document.documentElement;
+  const themeToggle = document.getElementById("theme-toggle");
+  const mobileToggle = document.getElementById("mobile-toggle");
+  const navMenu = document.getElementById("nav-menu");
+  const navLinks = document.querySelectorAll(".nav-link");
 
-  // 1. Mobile Navigation Drawer Toggle
-  const hamburgerBtn = document.getElementById("hamburgerBtn");
-  const navLinks = document.getElementById("navLinks");
+  // 1. Dark / Light Theme Toggle with Persistence
+  const applyTheme = (theme) => {
+    const validTheme = theme === "light" ? "light" : "dark";
+    htmlEl.setAttribute("data-theme", validTheme);
+    try {
+      localStorage.setItem("portfolio-theme", validTheme);
+    } catch (_) {
+      // Ignore storage errors in restricted browser contexts
+    }
+  };
 
-  function setMenuOpen(open) {
-    navLinks.classList.toggle("active", open);
-    hamburgerBtn.setAttribute("aria-expanded", String(open));
+  let initialTheme = htmlEl.getAttribute("data-theme") || "dark";
+  try {
+    const saved = localStorage.getItem("portfolio-theme");
+    if (saved === "light" || saved === "dark") {
+      initialTheme = saved;
+    }
+  } catch (_) {
+    // Fallback to attribute theme
   }
+  applyTheme(initialTheme);
 
-  hamburgerBtn.addEventListener("click", () => {
-    const isOpen = hamburgerBtn.getAttribute("aria-expanded") === "true";
-    setMenuOpen(!isOpen);
+  themeToggle?.addEventListener("click", () => {
+    const current = htmlEl.getAttribute("data-theme") === "light" ? "light" : "dark";
+    applyTheme(current === "dark" ? "light" : "dark");
   });
 
-  navLinks.querySelectorAll("a").forEach((anchor) => {
-    anchor.addEventListener("click", () => setMenuOpen(false));
+  // 2. Mobile Navigation Drawer
+  const closeMenu = () => {
+    navMenu?.classList.remove("open");
+    mobileToggle?.setAttribute("aria-expanded", "false");
+  };
+
+  mobileToggle?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = navMenu?.classList.toggle("open");
+    mobileToggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
   });
 
-  document.addEventListener("click", (event) => {
-    if (
-      navLinks.classList.contains("active") &&
-      !navLinks.contains(event.target) &&
-      !hamburgerBtn.contains(event.target)
-    ) {
-      setMenuOpen(false);
+  navLinks.forEach((link) => link.addEventListener("click", closeMenu));
+
+  document.addEventListener("click", (e) => {
+    if (navMenu?.classList.contains("open") && !navMenu.contains(e.target) && e.target !== mobileToggle) {
+      closeMenu();
     }
   });
 
-  // 2. Dark / Light Theme Toggle with localStorage Persistence
-  const themeToggle = document.getElementById("themeToggle");
-  const themeIcon = document.getElementById("themeIcon");
-  const rootEl = document.documentElement;
-  const STORAGE_KEY = "manogna_shree_kj_theme";
-
-  function applyTheme(mode) {
-    if (mode === "dark") {
-      rootEl.setAttribute("data-theme", "dark");
-      themeIcon.textContent = "☀️";
-    } else {
-      rootEl.removeAttribute("data-theme");
-      themeIcon.textContent = "🌙";
-    }
-  }
-
-  const savedTheme = localStorage.getItem(STORAGE_KEY);
-  const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  applyTheme(savedTheme || (systemDark ? "dark" : "light"));
-
-  themeToggle.addEventListener("click", () => {
-    const nextMode = rootEl.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    applyTheme(nextMode);
-    localStorage.setItem(STORAGE_KEY, nextMode);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
   });
 
-  // 3. Project Modal Popup
-  const modal = document.getElementById("projectModal");
-  const modalBackdrop = document.getElementById("modalBackdrop");
-  const closeModalBtn = document.getElementById("closeModalBtn");
-  const modalCloseAction = document.getElementById("modalCloseAction");
+  // 3. Scroll-Spy Active Navigation Highlight
+  const sections = document.querySelectorAll("main section[id]");
+  const updateActiveNav = () => {
+    const scrollPos = window.scrollY + 120;
+    sections.forEach((section) => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute("id");
+      if (scrollPos >= top && scrollPos < top + height) {
+        navLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+        });
+      }
+    });
+  };
+  window.addEventListener("scroll", updateActiveNav, { passive: true });
 
-  const modalTitle = document.getElementById("modalTitle");
-  const modalStack = document.getElementById("modalStack");
-  const modalSummary = document.getElementById("modalSummary");
-  const modalDetails = document.getElementById("modalDetails");
-  const modalGithub = document.getElementById("modalGithub");
+  // 4. Interactive Project Category Filter
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const projectCards = document.querySelectorAll(".project-card");
 
-  let triggerRef = null;
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
 
-  document.querySelectorAll(".open-modal-btn").forEach((button) => {
-    button.addEventListener("click", () => {
-      triggerRef = button;
-      modalTitle.textContent = button.dataset.title || "Project";
-      modalStack.textContent = `Tech Stack: ${button.dataset.stack || ""}`;
-      modalSummary.textContent = button.dataset.summary || "";
-      modalDetails.textContent = button.dataset.details || "";
-      modalGithub.href =
-        button.dataset.github ||
-        "https://github.com/Manogna090406/Datheon_Full_Stack_Web_Development_Internship";
-
-      modal.hidden = false;
-      document.body.style.overflow = "hidden";
-      closeModalBtn.focus();
+      const filter = btn.dataset.filter;
+      projectCards.forEach((card) => {
+        const match = filter === "all" || card.dataset.category === filter;
+        card.classList.toggle("hidden", !match);
+      });
     });
   });
 
-  function closeModal() {
-    if (modal.hidden) return;
-    modal.hidden = true;
-    document.body.style.overflow = "";
-    if (triggerRef) {
-      triggerRef.focus();
-      triggerRef = null;
-    }
-  }
-
-  closeModalBtn.addEventListener("click", closeModal);
-  modalCloseAction.addEventListener("click", closeModal);
-  modalBackdrop.addEventListener("click", closeModal);
-
-  // 4. Direct Mail Form Handler
-  const directMailForm = document.getElementById("directMailForm");
-  const mailStatus = document.getElementById("mailStatus");
-
-  if (directMailForm) {
-    directMailForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const name = document.getElementById("senderName").value.trim();
-      const email = document.getElementById("senderEmail").value.trim();
-      const message = document.getElementById("senderMessage").value.trim();
-
-      const subject = encodeURIComponent(`Portfolio / Internship Message from ${name}`);
-      const body = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-      );
-      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=manognashree2@gmail.com&su=${subject}&body=${body}`;
-
-      window.open(gmailUrl, "_blank", "noopener,noreferrer");
-      mailStatus.textContent =
-        "Opened Gmail compose addressed to manognashree2@gmail.com.";
-      directMailForm.reset();
+  // 5. Mail Handler (Gmail Compose + Mailto Fallback)
+  const getGmailLink = (subject = "", body = "") => {
+    const params = new URLSearchParams({
+      view: "cm",
+      fs: "1",
+      to: "manognashree2@gmail.com"
     });
-  }
+    if (subject) params.set("su", subject);
+    if (body) params.set("body", body);
+    return `https://mail.google.com/mail/?${params.toString()}`;
+  };
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      if (!modal.hidden) closeModal();
-      if (navLinks.classList.contains("active")) setMenuOpen(false);
+  const getMailtoLink = (subject = "", body = "") => {
+    const params = new URLSearchParams();
+    if (subject) params.set("subject", subject);
+    if (body) params.set("body", body);
+    const query = params.toString();
+    return `mailto:manognashree2@gmail.com${query ? `?${query}` : ""}`;
+  };
+
+  const statusEl = document.getElementById("mail-status");
+
+  const openMail = (subject = "", body = "") => {
+    const mailtoHref = getMailtoLink(subject, body);
+    const gmailHref = getGmailLink(subject, body);
+
+    if (statusEl) {
+      statusEl.innerHTML = `Gmail compose opened in a new tab. Need another app? <a href="${mailtoHref}">Use mail app</a>.`;
     }
+
+    const win = window.open(gmailHref, "_blank", "noopener,noreferrer");
+    if (!win) {
+      window.location.href = gmailHref;
+    }
+  };
+
+  document.getElementById("hero-email-link")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    openMail();
   });
-})();
+
+  document.getElementById("contact-email-link")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    openMail();
+  });
+
+  const contactForm = document.getElementById("contact-form");
+  contactForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = document.getElementById("sender-name")?.value.trim() || "";
+    const email = document.getElementById("sender-email")?.value.trim() || "";
+    const message = document.getElementById("sender-message")?.value.trim() || "";
+    if (!name || !email || !message) return;
+
+    const subject = `Portfolio Inquiry from ${name}`;
+    const body = `Hi Manogna,\n\n${message}\n\nBest regards,\n${name} (${email})`;
+    openMail(subject, body);
+  });
+});

@@ -1,424 +1,691 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Manogna Shree K J | Developer Portfolio</title>
+  <title>Manogna Shree KJ | Full-Stack &amp; Software Developer Portfolio</title>
+  <meta name="description" content="Developer portfolio of Manogna Shree K J — 3rd-year B.E. Information Science & Engineering student." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Header & Smooth Navigation -->
-  <header class="header" id="top">
-    <nav class="nav container" aria-label="Primary Navigation">
-      <a href="#home" class="brand-name">Manogna Shree K J</a>
+  <div class="bg-orb orb-1" aria-hidden="true"></div>
+  <div class="bg-orb orb-2" aria-hidden="true"></div>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#achievements">Achievements</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+  <!-- Header & Navigation -->
+  <header class="site-header" id="top">
+    <div class="container nav-container">
+      <a href="#home" class="brand" aria-label="Manogna Shree KJ Home">
+        <span class="brand-badge">MS</span>
+        <span class="brand-text">Manogna Shree KJ</span>
+      </a>
 
-      <div class="nav-controls">
-        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark or light theme" title="Toggle Dark/Light Theme">
-          <span id="themeIcon">🌙</span>
+      <nav class="nav-menu" id="nav-menu" aria-label="Primary Navigation">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#certifications" class="nav-link">Certifications</a>
+        <a href="#volunteering" class="nav-link">Volunteering</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button type="button" class="icon-btn" id="theme-toggle" aria-label="Toggle color theme" title="Toggle Dark/Light Theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
         </button>
-        <button id="hamburgerBtn" class="hamburger-btn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
-          <span></span>
-          <span></span>
-          <span></span>
+
+        <a href="#contact" class="btn btn-sm btn-outline nav-cta">Let's talk ↗</a>
+
+        <button type="button" class="icon-btn mobile-toggle" id="mobile-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="7" x2="21" y2="7"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="17" x2="21" y2="17"></line>
+          </svg>
         </button>
       </div>
-    </nav>
+    </div>
   </header>
 
   <main>
-    <!-- 1. Home Section -->
-    <section id="home" class="section home-section container">
-      <div class="home-split">
-        <div class="home-main">
-          <span class="hero-badge">Open to Software &amp; Full-Stack Engineering Internships</span>
-          <h1 class="hero-headline hero-headline--single">
-            Hi, I am <span class="gradient-name gradient-name--nowrap">Manogna Shree K J</span>.
-          </h1>
-          <p class="hero-subtext">
-            Crafting scalable web &amp; data systems as an Information Science &amp; Engineering undergraduate—combining Java, Spring Boot, SQL &amp; NoSQL databases, real-time monitoring interfaces, and AI-enabled workflows.
+    <!-- Hero Section -->
+    <section class="hero section" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="status-pill">
+            <span class="pulse-dot"></span>
+            3RD YEAR ENGINEERING • OPEN TO OPPORTUNITIES
+          </div>
+
+          <p class="hero-intro">Hello, I'm</p>
+          <h1 class="hero-title">Manogna <span class="gradient-text">Shree K J</span></h1>
+          <h2 class="hero-subtitle">3rd-Year B.E. Information Science &amp; Engineering Student</h2>
+
+          <p class="hero-description">
+            Full-Stack &amp; Backend Developer building structured web applications, Spring Boot services, database-driven systems, and clean interfaces.
           </p>
-          <div class="hero-cta">
-            <a href="#projects" class="btn btn-primary">Explore Projects</a>
-            <a href="#achievements" class="btn btn-secondary">Achievements</a>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=manognashree2@gmail.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Mail Me</a>
+
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">Explore my work ↗</a>
+            <a href="#about" class="btn btn-secondary">More about me ↓</a>
+          </div>
+
+          <div class="hero-socials">
+            <a href="https://github.com/Manogna090406" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/manognashreekj090406" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a href="mailto:manognashree2@gmail.com" id="hero-email-link">Email ↗</a>
           </div>
         </div>
 
-        <!-- Beside Overview Card -->
-        <aside class="card profile-side-box" aria-label="Developer Overview Card">
-          <div class="profile-box-header">
-            <span class="status-dot"></span>
-            <span class="profile-box-tag">Internship Profile</span>
-          </div>
-          <h2 class="profile-box-name">Manogna Shree K J</h2>
-          <p class="profile-box-role">B.E. ISE Undergraduate &bull; Full-Stack, Backend &amp; DBMS</p>
-          <p class="profile-box-message">
-            &ldquo;Welcome! I am Manogna Shree K J—a dedicated builder who loves turning structured backend logic, database design, and responsive frontend craft into reliable software. I am excited to learn fast, collaborate closely, and add real value to your engineering team.&rdquo;
-          </p>
-          <div class="profile-box-meta">
-            <div>
-              <strong>8.65</strong>
-              <span>CGPA</span>
-            </div>
-            <div>
-              <strong>8</strong>
-              <span>Projects</span>
-            </div>
-            <div>
-              <strong>Bengaluru</strong>
-              <span>India</span>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
+        <!-- Floating Developer Card -->
+        <div class="hero-visual">
+          <div class="orbit-ring ring-outer" aria-hidden="true"></div>
+          <div class="orbit-ring ring-inner" aria-hidden="true"></div>
 
-    <!-- 2. Education & Achievements Section -->
-    <section id="achievements" class="section container">
-      <div class="section-head">
-        <span class="eyebrow">Resume Credentials &amp; Milestones</span>
-        <h2>Education &amp; Achievements</h2>
-      </div>
+          <div class="floating-badge badge-top">✦ Always learning</div>
 
-      <div class="resume-layout">
-        <article class="card">
-          <h3>Education</h3>
-          <ul class="edu-list">
-            <li>
-              <div class="edu-top">
-                <strong>HNN College of Engineering</strong>
-                <span class="period">Sep 2024 – Jun 2028</span>
+          <article class="dev-window">
+            <div class="window-bar">
+              <div class="window-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
               </div>
-              <p>B.E. in Information Science and Engineering &bull; <strong>8.65 CGPA</strong> (till 4th sem) &bull; Bengaluru, Karnataka</p>
-            </li>
-            <li>
-              <div class="edu-top">
-                <strong>RK Vision PU College</strong>
-                <span class="period">2022 – 2024</span>
+              <span class="window-label">developer.profile</span>
+            </div>
+
+            <div class="window-body">
+              <div class="avatar-monogram">MS</div>
+              <h3 class="window-name">Manogna Shree KJ</h3>
+              <p class="window-role">3rd-Year ISE • Full-Stack &amp; Backend Developer</p>
+
+              <div class="window-tags">
+                <span>Java 21 &amp; Spring Boot</span>
+                <span>SQL / NoSQL</span>
+                <span>Web &amp; UI Craft</span>
               </div>
-              <p>PUC &bull; <strong>93.67%</strong> &bull; Chintamani, Karnataka</p>
-            </li>
-            <li>
-              <div class="edu-top">
-                <strong>Nalanda Vidhya Mandira</strong>
-                <span class="period">2022</span>
+            </div>
+          </article>
+
+          <div class="floating-badge badge-bottom">
+            <span class="pulse-dot"></span> Available for opportunities
+          </div>
+        </div>
+      </div>
+
+      <a href="#about" class="scroll-cue">SCROLL TO EXPLORE ↓</a>
+    </section>
+
+    <!-- 01 / ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">01 / ABOUT</span>
+          <h2 class="section-title">A little about <span class="gradient-text">me.</span></h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-story">
+            <p class="lead-text">
+              I'm <strong>Manogna Shree K J</strong>, a 3rd-year Information Science &amp; Engineering undergraduate at <strong>HNN College of Engineering</strong> who enjoys turning structured backend logic, database design, and clean frontend code into dependable software.
+            </p>
+            <p class="muted-text">
+              I've built multi-module Spring Boot applications, real-time dashboards, database-backed systems, and hackathon prototypes across Smart India Hackathon 2026, the Snapdragon AI Challenge, and an IIM Bangalore case presentation.
+            </p>
+            <a href="#contact" class="inline-link">Get in touch ↗</a>
+          </div>
+
+          <div class="about-pillars">
+            <article class="pillar-card">
+              <div class="pillar-icon">⌘</div>
+              <div>
+                <h3>My Focus</h3>
+                <p>Full-stack web development, Java 21 / Spring Boot APIs, relational &amp; NoSQL databases, and clean UI engineering.</p>
               </div>
-              <p>10th Grade &bull; <strong>92.64%</strong> &bull; Chintamani, Karnataka</p>
-            </li>
-          </ul>
-        </article>
+            </article>
 
-        <aside class="card">
-          <h3>Hackathons, Competitions, Events &amp; Interests</h3>
-          <ul class="credential-bullets">
-            <li><strong>Smart India Hackathon (SIH) 2026:</strong> Built an AI-powered IPsec VPN protocol analysis framework under the Blockchain &amp; Cybersecurity theme.</li>
-            <li><strong>Snapdragon AI Challenge:</strong> Developed a local Python &amp; Streamlit document-indexing application.</li>
-            <li><strong>IIM Bangalore Case Competition:</strong> Proposed a service architecture extending DigiYatra facial authentication to contactless hotel check-ins.</li>
-            <li><strong>Hackathon &amp; Workshop:</strong> Participated in a Christ University hackathon and attended a technical workshop at IIIT Kottayam.</li>
-            <li><strong>Certifications &amp; Coding:</strong> AI Fundamentals &amp; Job Essentials Certificate; active problem solving on LeetCode, GeeksforGeeks &amp; Unstop.</li>
-            <li><strong>Athletics:</strong> Kabaddi player &amp; Athletics.</li>
-          </ul>
-          <div class="resume-actions">
-            <a href="https://www.linkedin.com/in/manognashreekj090406" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-              LinkedIn Profile
-            </a>
-            <a href="https://github.com/Manogna090406/Datheon_Full_Stack_Web_Development_Internship" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-              GitHub Repository
-            </a>
+            <article class="pillar-card">
+              <div class="pillar-icon">◎</div>
+              <div>
+                <h3>My Approach</h3>
+                <p>Iterate rigorously, test edge cases thoroughly, and keep code modular and maintainable.</p>
+              </div>
+            </article>
+
+            <article class="pillar-card">
+              <div class="pillar-icon">↗</div>
+              <div>
+                <h3>My Goal</h3>
+                <p>Grow into a reliable software engineer delivering practical, high-impact products.</p>
+              </div>
+            </article>
           </div>
-        </aside>
+        </div>
       </div>
     </section>
 
-    <!-- 3. Skills Section -->
-    <section id="skills" class="section container">
-      <div class="section-head">
-        <span class="eyebrow">Technical Stack</span>
-        <h2>Skills</h2>
-      </div>
+    <!-- 02 / SKILLS -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">02 / SKILLS</span>
+          <h2 class="section-title">Tools I work <span class="gradient-text">with.</span></h2>
+          <p class="section-desc">Core technologies I use across backend services, responsive frontends, databases, and developer tooling.</p>
+        </div>
 
-      <div class="skills-grid">
-        <article class="card skill-card">
-          <span class="skill-tag">Languages</span>
-          <h3>Java &amp; Python</h3>
-          <p>Java (JDK 21 / 25), Object-Oriented Programming (OOP), Data Structures &amp; Algorithms (DSA), JDBC, and Python (3.8 / 3.12).</p>
-        </article>
+        <div class="skills-grid">
+          <article class="skill-card">
+            <div class="skill-badge badge-java">J21</div>
+            <h3>Java &amp; Spring Boot</h3>
+            <p>Java 21/25, Spring Boot, REST APIs, SSE, WebSockets, Microservices</p>
+          </article>
 
-        <article class="card skill-card">
-          <span class="skill-tag">Web &amp; UI</span>
-          <h3>HTML5, CSS3, JS &amp; UI</h3>
-          <p>Semantic HTML5, CSS Grid &amp; Flexbox, responsive media queries, dark/light themes, ES6+ JS, Thymeleaf, and Streamlit.</p>
-        </article>
+          <article class="skill-card">
+            <div class="skill-badge badge-web">UI</div>
+            <h3>HTML5, CSS3 &amp; JavaScript</h3>
+            <p>Semantic HTML, CSS Grid/Flexbox, ES6+, React.js, Thymeleaf</p>
+          </article>
 
-        <article class="card skill-card">
-          <span class="skill-tag">Backend &amp; Streaming</span>
-          <h3>Spring Boot, REST, SSE &amp; WS</h3>
-          <p>Spring Boot microservices, REST APIs, Server-Sent Events (SSE), WebSockets, Apache Tomcat, and Maven builds.</p>
-        </article>
+          <article class="skill-card">
+            <div class="skill-badge badge-py">Py</div>
+            <h3>Python &amp; Problem Solving</h3>
+            <p>Python 3.12, Streamlit, Scikit-learn, PCA, SHAP, DSA</p>
+          </article>
 
-        <article class="card skill-card">
-          <span class="skill-tag">Databases (DBMS)</span>
-          <h3>MySQL, PostgreSQL &amp; MongoDB</h3>
-          <p>Relational schema design, SQL queries, database triggers, stored procedures, indexing optimization, and NoSQL storage.</p>
-        </article>
+          <article class="skill-card">
+            <div class="skill-badge badge-db">DB</div>
+            <h3>SQL &amp; NoSQL Databases</h3>
+            <p>MySQL, PostgreSQL, MongoDB, JDBC, Triggers, Stored Procedures</p>
+          </article>
 
-        <article class="card skill-card">
-          <span class="skill-tag">AI &amp; Security Tools</span>
-          <h3>LangChain4j, Ollama, DJL &amp; Pcap4J</h3>
-          <p>Local LLM integration, Apache PDFBox, Deep Java Library (DJL), Weka ML, Pcap4J packet inspection, and strongSwan IPsec.</p>
-        </article>
+          <article class="skill-card">
+            <div class="skill-badge badge-ai">AI</div>
+            <h3>AI &amp; Security Tooling</h3>
+            <p>LangChain4j, Ollama, Deep Java Library (DJL), Apache PDFBox, Pcap4J, Weka</p>
+          </article>
 
-        <article class="card skill-card">
-          <span class="skill-tag">Developer Tools</span>
-          <h3>VS Code, Eclipse, Git &amp; Colab</h3>
-          <p>VS Code, Eclipse IDE, Git Bash, GitHub, Google Colab, and live hosting on GitHub Pages, Vercel, and Netlify.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- 4. All Projects Section -->
-    <section id="projects" class="section container">
-      <div class="section-head">
-        <span class="eyebrow">Portfolio Proof</span>
-        <h2>Projects</h2>
-      </div>
-
-      <div class="projects-grid">
-        <!-- 1. Banking Management System -->
-        <article class="card project-card">
-          <div class="project-header">
-            <span class="project-badge">FinTech &bull; Java &amp; SQL</span>
-            <span class="project-index">01</span>
-          </div>
-          <h3>Banking Management System</h3>
-          <p class="project-desc">
-            Core banking application managing customer accounts, fund transfers, authentication/authorization, and JDBC-backed transaction persistence.
-          </p>
-          <ul class="stack-list">
-            <li>Java</li>
-            <li>OOP</li>
-            <li>JDBC</li>
-            <li>SQL</li>
-          </ul>
-        </article>
-
-        <!-- 2. Factory Dashboard -->
-        <article class="card project-card">
-          <div class="project-header">
-            <span class="project-badge">Industrial IoT &bull; Spring Boot</span>
-            <span class="project-index">02</span>
-          </div>
-          <h3>Factory Dashboard</h3>
-          <p class="project-desc">
-            Real-time operational dashboard monitoring production workflows, machine telemetry, REST/SSE streams, MySQL data, and automated threshold alerts.
-          </p>
-          <ul class="stack-list">
-            <li>Java</li>
-            <li>Spring Boot</li>
-            <li>REST &amp; SSE</li>
-            <li>MySQL</li>
-          </ul>
-        </article>
-
-        <!-- 3. Fraud Management System -->
-        <article class="card project-card">
-          <div class="project-header">
-            <span class="project-badge">DBMS &amp; Risk &bull; SQL &amp; Python</span>
-            <span class="project-index">03</span>
-          </div>
-          <h3>Fraud Management System</h3>
-          <p class="project-desc">
-            Database-driven fraud detection system using SQL triggers, stored procedures, indexing optimization, and Python analysis to flag risky transactions.
-          </p>
-          <ul class="stack-list">
-            <li>SQL</li>
-            <li>DBMS</li>
-            <li>Triggers &amp; SPs</li>
-            <li>Python</li>
-          </ul>
-        </article>
-
-        <!-- 4. ResQFlow -->
-        <article class="card project-card">
-          <div class="project-header">
-            <span class="project-badge">Smart Mobility &bull; Java 21</span>
-            <span class="project-index">04</span>
-          </div>
-          <h3>ResQFlow</h3>
-          <p class="project-desc">
-            Emergency vehicle siren detection and traffic signal preemption system across multi-module Spring Boot services, serving as Backend &amp; Frontend Designer.
-          </p>
-          <ul class="stack-list">
-            <li>Java 21</li>
-            <li>Spring Boot</li>
-            <li>Microservices</li>
-            <li>DSP &amp; UI</li>
-          </ul>
-        </article>
-
-        <!-- 5. ORACLE VPN Analyzer -->
-        <article class="card project-card">
-          <div class="project-header">
-            <span class="project-badge">SIH 2026 &bull; Cybersecurity</span>
-            <span class="project-index">05</span>
-          </div>
-          <h3>ORACLE VPN Analyzer</h3>
-          <p class="project-desc">
-            Passive, decryption-free AI-powered IPsec VPN protocol analyzer and security assessment framework built for Smart India Hackathon 2026.
-          </p>
-          <ul class="stack-list">
-            <li>Java</li>
-            <li>Spring Boot</li>
-            <li>Pcap4J &amp; Weka</li>
-            <li>PostgreSQL</li>
-          </ul>
-        </article>
-
-        <!-- 6. Research Assistant AI -->
-        <article class="card project-card">
-          <div class="project-header">
-            <span class="project-badge">AI &amp; Web &bull; Spring Boot</span>
-            <span class="project-index">06</span>
-          </div>
-          <h3>Research Assistant AI</h3>
-          <p class="project-desc">
-            Java 21 and Spring Boot 3.3.4 web application with Thymeleaf, WebSockets, LangChain4j Ollama, Apache PDFBox, and DJL for analyzing research papers.
-          </p>
-          <ul class="stack-list">
-            <li>Java 21</li>
-            <li>Spring Boot</li>
-            <li>LangChain4j</li>
-            <li>PDFBox &amp; WS</li>
-          </ul>
-        </article>
-
-        <!-- 7. Snapdragon AI Local Document Indexer -->
-        <article class="card project-card">
-          <div class="project-header">
-            <span class="project-badge">Snapdragon AI &bull; Python</span>
-            <span class="project-index">07</span>
-          </div>
-          <h3>Snapdragon AI Local Indexer</h3>
-          <p class="project-desc">
-            Local document-indexing web application built in Python 3.12 with Streamlit for the Snapdragon AI Challenge.
-          </p>
-          <ul class="stack-list">
-            <li>Python 3.12</li>
-            <li>Streamlit</li>
-            <li>Local AI</li>
-          </ul>
-        </article>
-
-        <!-- 8. DigiYatra Hotel Check-In Architecture -->
-        <article class="card project-card">
-          <div class="project-header">
-            <span class="project-badge">IIM Bangalore &bull; Architecture</span>
-            <span class="project-index">08</span>
-          </div>
-          <h3>DigiYatra Hotel Check-In</h3>
-          <p class="project-desc">
-            Service architecture extending facial authentication workflows to contactless hotel check-ins for an IIM Bangalore case presentation.
-          </p>
-          <ul class="stack-list">
-            <li>Service Design</li>
-            <li>Identity Flow</li>
-            <li>Case Deck</li>
-          </ul>
-        </article>
+          <article class="skill-card">
+            <div class="skill-badge badge-git">Git</div>
+            <h3>Developer Workflow</h3>
+            <p>Git, GitHub, Maven, Eclipse, VS Code, Vercel</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- 5. Contact & Direct Mail Section -->
-    <section id="contact" class="section container">
-      <div class="section-head">
-        <span class="eyebrow">Get In Touch</span>
-        <h2>Contact &amp; Mail Me</h2>
+    <!-- 03 / PROJECTS -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header-row">
+          <div>
+            <span class="section-eyebrow">03 / PROJECTS</span>
+            <h2 class="section-title">Things I've been <span class="gradient-text">building.</span></h2>
+          </div>
+
+          <div class="filter-bar" role="tablist" aria-label="Filter projects">
+            <button type="button" class="filter-btn active" data-filter="all">All (8)</button>
+            <button type="button" class="filter-btn" data-filter="fullstack">Java &amp; Full-Stack</button>
+            <button type="button" class="filter-btn" data-filter="ai">AI &amp; Security</button>
+            <button type="button" class="filter-btn" data-filter="data">Data &amp; Systems</button>
+          </div>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card" data-category="fullstack">
+            <div class="project-art">
+              <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="360" height="150" fill="url(#g1)" />
+                <rect x="28" y="68" width="76" height="58" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-opacity="0.5" />
+                <polygon points="28,68 52,50 52,68 78,50 78,68 104,50 104,68" fill="#1e293b" stroke="#38bdf8" stroke-opacity="0.5" />
+                <rect x="132" y="34" width="200" height="92" rx="10" fill="#090f1d" stroke="#38bdf8" stroke-opacity="0.4" />
+                <rect x="148" y="88" width="18" height="24" rx="3" fill="#38bdf8" />
+                <rect x="174" y="72" width="18" height="40" rx="3" fill="#60a5fa" />
+                <rect x="200" y="58" width="18" height="54" rx="3" fill="#818cf8" />
+                <rect x="226" y="48" width="18" height="64" rx="3" fill="#34d399" />
+                <polyline points="256,94 276,74 294,82 316,52" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="316" cy="52" r="5" fill="#22c55e" />
+                <defs>
+                  <linearGradient id="g1" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0b192c" />
+                    <stop offset="1" stop-color="#172554" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-type">FULL-STACK</span>
+                <span class="project-stack-mini">Java • Spring Boot • SSE • MySQL</span>
+              </div>
+              <h3>Factory Dashboard System</h3>
+              <p>Real-time manufacturing telemetry and workstation tracking system powered by Spring Boot REST APIs, Server-Sent Events, and MySQL.</p>
+              <div class="project-tags">
+                <span>Java</span><span>Spring Boot</span><span>SSE</span><span>MySQL</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="ai">
+            <div class="project-art">
+              <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="360" height="150" fill="url(#g2)" />
+                <rect x="34" y="28" width="84" height="96" rx="8" fill="#111827" stroke="#a78bfa" stroke-opacity="0.55" />
+                <line x1="50" y1="50" x2="102" y2="50" stroke="#c4b5fd" stroke-width="3" stroke-linecap="round" />
+                <line x1="50" y1="66" x2="94" y2="66" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="50" y1="80" x2="98" y2="80" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="50" y1="94" x2="82" y2="94" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" />
+                <circle cx="235" cy="75" r="38" fill="#1e1b4b" stroke="#c084fc" stroke-opacity="0.65" />
+                <circle cx="235" cy="75" r="14" fill="#a855f7" fill-opacity="0.35" stroke="#e879f9" />
+                <line x1="118" y1="75" x2="197" y2="75" stroke="#c084fc" stroke-dasharray="4 4" stroke-width="2" />
+                <circle cx="272" cy="44" r="6" fill="#38bdf8" />
+                <circle cx="288" cy="96" r="6" fill="#34d399" />
+                <defs>
+                  <linearGradient id="g2" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#17112e" />
+                    <stop offset="1" stop-color="#311042" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-type">MULTI-AGENT AI</span>
+                <span class="project-stack-mini">Java 21 • LangChain4j • Ollama</span>
+              </div>
+              <h3>Research Assistant AI</h3>
+              <p>Multi-agent scientific paper analyzer built with Spring Boot 3.3.4, WebSockets, LangChain4j Ollama, Apache PDFBox, and Deep Java Library.</p>
+              <div class="project-tags">
+                <span>Java 21</span><span>LangChain4j</span><span>Ollama</span><span>WebSockets</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="fullstack">
+            <div class="project-art">
+              <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="360" height="150" fill="url(#g3)" />
+                <rect x="28" y="54" width="114" height="46" rx="10" fill="#f8fafc" />
+                <rect x="106" y="62" width="26" height="18" rx="3" fill="#0ea5e9" />
+                <path d="M62 67V87M52 77H72" stroke="#ef4444" stroke-width="5" stroke-linecap="round" />
+                <circle cx="54" cy="102" r="8" fill="#0f172a" />
+                <circle cx="122" cy="102" r="8" fill="#0f172a" />
+                <path d="M162 76C174 62 174 90 162 76ZM178 76C196 54 196 98 178 76Z" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" />
+                <rect x="234" y="34" width="44" height="82" rx="10" fill="#090f1d" stroke="#475569" />
+                <circle cx="256" cy="54" r="9" fill="#22c55e" />
+                <circle cx="256" cy="75" r="9" fill="#334155" />
+                <circle cx="256" cy="96" r="9" fill="#334155" />
+                <defs>
+                  <linearGradient id="g3" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#062826" />
+                    <stop offset="1" stop-color="#0f3d3e" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-type">MICROSERVICES</span>
+                <span class="project-stack-mini">Java 21 • Spring Boot • DSP • V2X</span>
+              </div>
+              <h3>ResQFlow Emergency Signal Preemption</h3>
+              <p>Intelligent ambulance siren detection and traffic signal preemption platform combining acoustic DSP, V2X messaging, and audit logging.</p>
+              <div class="project-tags">
+                <span>Java 21</span><span>Spring Boot</span><span>DSP</span><span>UI Design</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="ai">
+            <div class="project-art">
+              <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="360" height="150" fill="url(#g4)" />
+                <path d="M90 28L126 42V76C126 101 109 118 90 126C71 118 54 101 54 76V42L90 28Z" fill="#1e1b4b" stroke="#38bdf8" stroke-width="2.5" />
+                <path d="M77 77L86 86L105 65" stroke="#34d399" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                <rect x="164" y="38" width="160" height="74" rx="10" fill="#090f1d" stroke="#818cf8" stroke-opacity="0.45" />
+                <polyline points="178,86 204,64 228,80 256,48 286,70 308,56" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                <defs>
+                  <linearGradient id="g4" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#131636" />
+                    <stop offset="1" stop-color="#281647" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-type">SIH 2026 • SECURITY</span>
+                <span class="project-stack-mini">Java • Pcap4J • Weka • PostgreSQL</span>
+              </div>
+              <h3>ORACLE Passive IPsec VPN Analyzer</h3>
+              <p>AI-powered passive network packet inspection and IPsec protocol security assessment framework developed for Smart India Hackathon 2026.</p>
+              <div class="project-tags">
+                <span>Pcap4J</span><span>Spring Boot</span><span>Weka ML</span><span>PostgreSQL</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="data">
+            <div class="project-art">
+              <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="360" height="150" fill="url(#g5)" />
+                <polygon points="105,28 46,56 164,56" fill="#1e3a8a" stroke="#60a5fa" stroke-width="2" />
+                <rect x="56" y="58" width="16" height="54" fill="#3b82f6" fill-opacity="0.7" />
+                <rect x="97" y="58" width="16" height="54" fill="#3b82f6" fill-opacity="0.7" />
+                <rect x="138" y="58" width="16" height="54" fill="#3b82f6" fill-opacity="0.7" />
+                <rect x="42" y="112" width="126" height="10" rx="3" fill="#60a5fa" />
+                <rect x="196" y="44" width="124" height="72" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-opacity="0.5" />
+                <rect x="210" y="60" width="28" height="20" rx="4" fill="#f59e0b" fill-opacity="0.8" />
+                <line x1="210" y1="96" x2="296" y2="96" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+                <defs>
+                  <linearGradient id="g5" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0d1b3e" />
+                    <stop offset="1" stop-color="#1e293b" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-type">BACKEND SYSTEM</span>
+                <span class="project-stack-mini">Java • OOP • JDBC • SQL</span>
+              </div>
+              <h3>Banking Management System</h3>
+              <p>End-to-end banking operations application supporting account lifecycle, transactional integrity, balance auditing, and relational persistence.</p>
+              <div class="project-tags">
+                <span>Java</span><span>OOP</span><span>JDBC</span><span>SQL</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="data">
+            <div class="project-art">
+              <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="360" height="150" fill="url(#g6)" />
+                <ellipse cx="104" cy="48" rx="44" ry="12" fill="#1e293b" stroke="#f472b6" />
+                <path d="M60 48V102C60 108.6 79.7 114 104 114C128.3 114 148 108.6 148 102V48" stroke="#f472b6" />
+                <ellipse cx="104" cy="76" rx="44" ry="12" stroke="#f472b6" stroke-opacity="0.5" />
+                <circle cx="242" cy="72" r="28" stroke="#fb7185" stroke-width="4" fill="#2a0d1c" />
+                <line x1="262" y1="92" x2="288" y2="118" stroke="#fb7185" stroke-width="5" stroke-linecap="round" />
+                <circle cx="242" cy="72" r="7" fill="#f43f5e" />
+                <defs>
+                  <linearGradient id="g6" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#260c1a" />
+                    <stop offset="1" stop-color="#3b122b" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-type">DATABASE ENGINE</span>
+                <span class="project-stack-mini">SQL • Triggers • Stored Procs</span>
+              </div>
+              <h3>DBMS Fraud Detection System</h3>
+              <p>Automated transaction anomaly monitoring utilizing database triggers, stored procedures, audit trails, and Python analytical scripts.</p>
+              <div class="project-tags">
+                <span>SQL</span><span>Triggers</span><span>Stored Procedures</span><span>Python</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="ai">
+            <div class="project-art">
+              <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="360" height="150" fill="url(#g7)" />
+                <rect x="132" y="34" width="96" height="82" rx="12" fill="#090f1d" stroke="#38bdf8" stroke-width="2" />
+                <rect x="150" y="52" width="60" height="46" rx="6" fill="#1e293b" />
+                <path d="M174 64L165 76H180L172 88" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                <line x1="152" y1="22" x2="152" y2="34" stroke="#94a3b8" stroke-width="2.5" />
+                <line x1="180" y1="22" x2="180" y2="34" stroke="#94a3b8" stroke-width="2.5" />
+                <line x1="208" y1="22" x2="208" y2="34" stroke="#94a3b8" stroke-width="2.5" />
+                <line x1="152" y1="116" x2="152" y2="128" stroke="#94a3b8" stroke-width="2.5" />
+                <line x1="180" y1="116" x2="180" y2="128" stroke="#94a3b8" stroke-width="2.5" />
+                <line x1="208" y1="116" x2="208" y2="128" stroke="#94a3b8" stroke-width="2.5" />
+                <defs>
+                  <linearGradient id="g7" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#091e2c" />
+                    <stop offset="1" stop-color="#102a43" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-type">SNAPDRAGON AI</span>
+                <span class="project-stack-mini">Python 3.12 • Streamlit</span>
+              </div>
+              <h3>Snapdragon AI Local Document Indexer</h3>
+              <p>Privacy-first local document indexing and semantic retrieval interface built for the Snapdragon AI Challenge.</p>
+              <div class="project-tags">
+                <span>Python 3.12</span><span>Streamlit</span><span>Local AI</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="data">
+            <div class="project-art">
+              <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="360" height="150" fill="url(#g8)" />
+                <path d="M52 96L146 66L122 44L134 40L168 62L218 46C228 43 236 47 238 53C240 59 233 66 222 70L74 114L52 96Z" fill="#38bdf8" fill-opacity="0.85" />
+                <rect x="252" y="34" width="68" height="82" rx="8" fill="#0f172a" stroke="#818cf8" stroke-opacity="0.6" />
+                <circle cx="286" cy="64" r="10" stroke="#34d399" stroke-width="2.5" />
+                <path d="M270 94C272 84 300 84 302 94" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" />
+                <defs>
+                  <linearGradient id="g8" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#111838" />
+                    <stop offset="1" stop-color="#1d3557" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-type">IIM BANGALORE CASE</span>
+                <span class="project-stack-mini">Identity Flow • System Design</span>
+              </div>
+              <h3>DigiYatra Contactless Hotel Check-In</h3>
+              <p>Decentralized verifiable-credential architecture extending DigiYatra facial identity verification to seamless hotel check-ins.</p>
+              <div class="project-tags">
+                <span>System Design</span><span>Identity API</span><span>Product Strategy</span>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <div class="contact-split">
-        <form id="directMailForm" class="card mail-form">
-          <h3>Send a Direct Mail</h3>
-          <p class="form-subtitle">Enter your name, email, and message to open Gmail directly to <a href="https://mail.google.com/mail/?view=cm&fs=1&to=manognashree2@gmail.com" target="_blank" rel="noopener noreferrer"><strong>manognashree2@gmail.com</strong></a>.</p>
+    <!-- 04 / EDUCATION -->
+    <section class="section" id="education">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">04 / EDUCATION</span>
+          <h2 class="section-title">Academic <span class="gradient-text">journey.</span></h2>
+        </div>
 
-          <div class="form-group">
-            <label for="senderName">Your Name</label>
-            <input id="senderName" name="name" type="text" placeholder="Enter your name" required />
+        <div class="edu-timeline">
+          <article class="edu-card">
+            <div class="edu-top">
+              <div>
+                <h3>HNN College of Engineering</h3>
+                <p class="edu-degree">3rd-Year B.E. in Information Science &amp; Engineering (VTU)</p>
+              </div>
+              <span class="edu-badge">CGPA: 8.65 (till 2nd year / 4th sem)</span>
+            </div>
+            <p class="edu-meta">2024 – 2028</p>
+          </article>
+
+          <div class="edu-split">
+            <article class="edu-card">
+              <div class="edu-top">
+                <div>
+                  <h3>RK Vision PU College</h3>
+                  <p class="edu-degree">Pre-University Education (Class XII — Science)</p>
+                </div>
+                <span class="edu-badge">92.6%</span>
+              </div>
+              <p class="edu-meta">Higher Secondary Education • Scored 92.6%</p>
+            </article>
+
+            <article class="edu-card">
+              <div class="edu-top">
+                <div>
+                  <h3>Nalanda Vidhya Mandira</h3>
+                  <p class="edu-degree">Secondary School Education (Class X)</p>
+                </div>
+                <span class="edu-badge">8th LIC Award • 100%</span>
+              </div>
+              <p class="edu-meta"><strong>Achievements:</strong> LIC Award in 8th for scoring 100%</p>
+            </article>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="form-group">
-            <label for="senderEmail">Your Email</label>
-            <input id="senderEmail" name="email" type="email" placeholder="you@company.com" required />
-          </div>
+    <!-- 05 / CERTIFICATIONS -->
+    <section class="section" id="certifications">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">05 / CERTIFICATIONS</span>
+          <h2 class="section-title">Credentials &amp; <span class="gradient-text">training.</span></h2>
+        </div>
 
-          <div class="form-group">
-            <label for="senderMessage">Message</label>
-            <textarea id="senderMessage" name="message" rows="4" placeholder="Write your message here..." required></textarea>
-          </div>
+        <div class="cards-grid-2">
+          <article class="info-card">
+            <span class="card-tag">COURSEWORK &amp; MINOR</span>
+            <h3>VTU Engineering &amp; Minor Degree Track</h3>
+            <p>Core computer science, database systems, software engineering, and minor degree coursework.</p>
+          </article>
 
-          <button type="submit" class="btn btn-primary mail-submit-btn">Send Mail</button>
-          <p id="mailStatus" class="mail-status" role="status" aria-live="polite"></p>
-        </form>
+          <article class="info-card">
+            <span class="card-tag">BACKEND &amp; AI</span>
+            <h3>Java, Spring Boot &amp; Applied AI</h3>
+            <p>Practical experience with Java 21, Spring Boot, SQL/NoSQL databases, and AI-assisted workflows.</p>
+          </article>
 
-        <aside class="card contact-links-card">
-          <h3>Direct Links</h3>
-          <p class="form-subtitle">Connect with Manogna Shree K J across Gmail, LinkedIn, and GitHub.</p>
+          <article class="info-card">
+            <span class="card-tag">COMPETITIVE PROGRAMMING</span>
+            <h3>Algorithms &amp; Problem Solving</h3>
+            <p>Consistent practice across data structures, algorithms, and debugging in Java and Python.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-          <div class="contact-details">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=manognashree2@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-item">
-              <strong>Gmail</strong>
-              <span>manognashree2@gmail.com</span>
+    <!-- 06 / VOLUNTEERING -->
+    <section class="section" id="volunteering">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">06 / VOLUNTEERING</span>
+          <h2 class="section-title">Volunteering &amp; <span class="gradient-text">highlights.</span></h2>
+        </div>
+
+        <div class="cards-grid-2">
+          <article class="info-card">
+            <span class="card-tag">VOLUNTEERING</span>
+            <h3>Alumni Association Volunteering</h3>
+            <p>Actively volunteering with the alumni association to support student-alumni mentorship, outreach, and community initiatives.</p>
+          </article>
+
+          <article class="info-card">
+            <span class="card-tag">HACKATHON</span>
+            <h3>Smart India Hackathon (SIH) 2026</h3>
+            <p>Collaborated on ORACLE, an AI-powered passive IPsec VPN protocol analyzer and security assessment framework.</p>
+          </article>
+
+          <article class="info-card">
+            <span class="card-tag">AI CHALLENGE</span>
+            <h3>Snapdragon AI Challenge</h3>
+            <p>Built an on-device Streamlit application for local document indexing and search.</p>
+          </article>
+
+          <article class="info-card">
+            <span class="card-tag">CASE COMPETITION</span>
+            <h3>IIM Bangalore Case Presentation</h3>
+            <p>Presented a solution extending DigiYatra identity verification to contactless hotel check-ins.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 / CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">07 / CONTACT</span>
+          <h2 class="section-title">Let's start a <span class="gradient-text">conversation.</span></h2>
+          <p class="section-desc">Have an internship opportunity, project idea, or collaboration in mind? My inbox is open.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-links">
+            <a href="mailto:manognashree2@gmail.com" id="contact-email-link" class="contact-item">
+              <div class="contact-icon">✉</div>
+              <div>
+                <span class="contact-label">EMAIL ME</span>
+                <strong>manognashree2@gmail.com</strong>
+              </div>
+              <span class="arrow">↗</span>
             </a>
+
+            <a href="https://github.com/Manogna090406" target="_blank" rel="noopener noreferrer" class="contact-item">
+              <div class="contact-icon">⌘</div>
+              <div>
+                <span class="contact-label">GITHUB</span>
+                <strong>github.com/Manogna090406</strong>
+              </div>
+              <span class="arrow">↗</span>
+            </a>
+
             <a href="https://www.linkedin.com/in/manognashreekj090406" target="_blank" rel="noopener noreferrer" class="contact-item">
-              <strong>LinkedIn</strong>
-              <span>linkedin.com/in/manognashreekj090406</span>
-            </a>
-            <a href="https://github.com/Manogna090406/Datheon_Full_Stack_Web_Development_Internship" target="_blank" rel="noopener noreferrer" class="contact-item">
-              <strong>GitHub</strong>
-              <span>github.com/Manogna090406</span>
+              <div class="contact-icon">in</div>
+              <div>
+                <span class="contact-label">LINKEDIN</span>
+                <strong>linkedin.com/in/manognashreekj090406</strong>
+              </div>
+              <span class="arrow">↗</span>
             </a>
           </div>
-        </aside>
+
+          <form class="contact-form" id="contact-form">
+            <div class="form-group">
+              <label for="sender-name">Your name</label>
+              <input type="text" id="sender-name" name="name" placeholder="Enter your name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="sender-email">Your email</label>
+              <input type="email" id="sender-email" name="email" placeholder="you@example.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="sender-message">Message</label>
+              <textarea id="sender-message" name="message" rows="4" placeholder="Tell me what you have in mind..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">Send Mail ↗</button>
+            <p class="form-note" id="mail-status">Opens Gmail on desktop or your mail app on mobile.</p>
+          </form>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-content">
-      <p><strong>Manogna Shree K J</strong> &bull; Bengaluru, Karnataka &bull; <a href="https://mail.google.com/mail/?view=cm&fs=1&to=manognashree2@gmail.com" target="_blank" rel="noopener noreferrer">manognashree2@gmail.com</a></p>
-      <a href="#top" class="top-link">Back to Top &uarr;</a>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 <strong>Manogna Shree KJ</strong>. Built with HTML5, CSS3 &amp; Vanilla JavaScript.</p>
+      <a href="#top" class="back-top">Back to top ↑</a>
     </div>
   </footer>
-
-  <!-- Project Detail Modal -->
-  <div id="projectModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
-    <div class="modal-backdrop" id="modalBackdrop"></div>
-    <div class="modal-box">
-      <button id="closeModalBtn" class="modal-close" type="button" aria-label="Close modal">&times;</button>
-      <h3 id="modalTitle">Project Title</h3>
-      <p id="modalStack" class="modal-stack"></p>
-      <p id="modalSummary" class="modal-summary"></p>
-      <div class="modal-highlights">
-        <h4>Key Implementation Details</h4>
-        <pre id="modalDetails"></pre>
-      </div>
-      <div class="modal-footer-actions">
-        <a id="modalGithub" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">GitHub Repository</a>
-        <button id="modalCloseAction" type="button" class="btn btn-secondary btn-sm">Done</button>
-      </div>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>
