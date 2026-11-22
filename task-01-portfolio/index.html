@@ -7,7 +7,7 @@
   <meta name="description" content="Developer portfolio of Manogna Shree K J — 3rd-year B.E. Information Science & Engineering student." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -62,13 +62,12 @@
     <section class="hero section" id="home">
       <div class="container hero-grid">
         <div class="hero-content">
+          <p class="hero-intro">Building dependable software — I'm</p>
+          <h1 class="hero-title">Manogna <span class="gradient-text">Shree K J</span></h1>
           <div class="status-pill">
             <span class="pulse-dot"></span>
-            3RD YEAR ENGINEERING • OPEN TO OPPORTUNITIES
+            3RD YEAR ENGINEERING • OPEN TO NEW ROLES
           </div>
-
-          <p class="hero-intro">Hello, I'm</p>
-          <h1 class="hero-title">Manogna <span class="gradient-text">Shree K J</span></h1>
           <h2 class="hero-subtitle">3rd-Year B.E. Information Science &amp; Engineering Student</h2>
 
           <p class="hero-description">
@@ -87,12 +86,12 @@
           </div>
         </div>
 
-        <!-- Floating Developer Card -->
+        <!-- Cosmic Developer Spotlight Card -->
         <div class="hero-visual">
           <div class="orbit-ring ring-outer" aria-hidden="true"></div>
           <div class="orbit-ring ring-inner" aria-hidden="true"></div>
 
-          <div class="floating-badge badge-top">✦ Always learning</div>
+          <div class="floating-badge badge-top">✦ Growing every day</div>
 
           <article class="dev-window">
             <div class="window-bar">
@@ -101,24 +100,32 @@
                 <span class="dot yellow"></span>
                 <span class="dot green"></span>
               </div>
-              <span class="window-label">developer.profile</span>
+              <span class="window-label">&lt;/&gt; | developer.profile</span>
             </div>
 
             <div class="window-body">
-              <div class="avatar-monogram">MS</div>
-              <h3 class="window-name">Manogna Shree KJ</h3>
-              <p class="window-role">3rd-Year ISE • Full-Stack &amp; Backend Developer</p>
+              <div class="avatar-orbit-wrap">
+                <span class="avatar-ring-tilt" aria-hidden="true"></span>
+                <div class="avatar-monogram">MS</div>
+              </div>
 
-              <div class="window-tags">
-                <span>Java 21 &amp; Spring Boot</span>
-                <span>SQL / NoSQL</span>
-                <span>Web &amp; UI Craft</span>
+              <h3 class="window-name">Manogna Shree KJ</h3>
+              <p class="window-role">3rd-Year ISE • Full-Stack Developer</p>
+              <p class="window-tagline">Building reliable scalable innovative solution.</p>
+
+              <div class="window-divider-label">Tech Stack</div>
+
+              <div class="stack-pills-grid">
+                <span class="stack-pill">☕ Java 21</span>
+                <span class="stack-pill">🍃 Spring Boot</span>
+                <span class="stack-pill">🗄️ SQL / MySQL</span>
+                <span class="stack-pill">🌐 Web &amp; UI</span>
               </div>
             </div>
           </article>
 
           <div class="floating-badge badge-bottom">
-            <span class="pulse-dot"></span> Available for opportunities
+            <span class="pulse-dot"></span> Open to new roles
           </div>
         </div>
       </div>
@@ -130,8 +137,8 @@
     <section class="section" id="about">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">01 / ABOUT</span>
-          <h2 class="section-title">A little about <span class="gradient-text">me.</span></h2>
+          <h2 class="section-title">Builder <span class="gradient-text">Profile.</span></h2>
+          <span class="section-eyebrow">01 / ENGINEERING SNAPSHOT</span>
         </div>
 
         <div class="about-grid">
@@ -147,25 +154,40 @@
 
           <div class="about-pillars">
             <article class="pillar-card">
-              <div class="pillar-icon">⌘</div>
+              <div class="pillar-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
               <div>
-                <h3>My Focus</h3>
+                <h3>Core Stack &amp; Craft</h3>
                 <p>Full-stack web development, Java 21 / Spring Boot APIs, relational &amp; NoSQL databases, and clean UI engineering.</p>
               </div>
             </article>
 
             <article class="pillar-card">
-              <div class="pillar-icon">◎</div>
+              <div class="pillar-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  <polyline points="9 12 11 14 15 10"></polyline>
+                </svg>
+              </div>
               <div>
-                <h3>My Approach</h3>
+                <h3>Execution &amp; Reliability</h3>
                 <p>Iterate rigorously, test edge cases thoroughly, and keep code modular and maintainable.</p>
               </div>
             </article>
 
             <article class="pillar-card">
-              <div class="pillar-icon">↗</div>
+              <div class="pillar-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                </svg>
+              </div>
               <div>
-                <h3>My Goal</h3>
+                <h3>Career Direction</h3>
                 <p>Grow into a reliable software engineer delivering practical, high-impact products.</p>
               </div>
             </article>
@@ -178,45 +200,45 @@
     <section class="section" id="skills">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">02 / SKILLS</span>
-          <h2 class="section-title">Tools I work <span class="gradient-text">with.</span></h2>
+          <h2 class="section-title">Stack &amp; <span class="gradient-text">Capabilities.</span></h2>
+          <span class="section-eyebrow">02 / TECHNICAL ARSENAL</span>
           <p class="section-desc">Core technologies I use across backend services, responsive frontends, databases, and developer tooling.</p>
         </div>
 
         <div class="skills-grid">
           <article class="skill-card">
             <div class="skill-badge badge-java">J21</div>
-            <h3>Java &amp; Spring Boot</h3>
+            <h3>Backend &amp; Realtime</h3>
             <p>Java 21/25, Spring Boot, REST APIs, SSE, WebSockets, Microservices</p>
           </article>
 
           <article class="skill-card">
             <div class="skill-badge badge-web">UI</div>
-            <h3>HTML5, CSS3 &amp; JavaScript</h3>
+            <h3>Frontend Interfaces</h3>
             <p>Semantic HTML, CSS Grid/Flexbox, ES6+, React.js, Thymeleaf</p>
           </article>
 
           <article class="skill-card">
             <div class="skill-badge badge-py">Py</div>
-            <h3>Python &amp; Problem Solving</h3>
+            <h3>Python &amp; Algorithms</h3>
             <p>Python 3.12, Streamlit, Scikit-learn, PCA, SHAP, DSA</p>
           </article>
 
           <article class="skill-card">
             <div class="skill-badge badge-db">DB</div>
-            <h3>SQL &amp; NoSQL Databases</h3>
+            <h3>Data &amp; Persistence</h3>
             <p>MySQL, PostgreSQL, MongoDB, JDBC, Triggers, Stored Procedures</p>
           </article>
 
           <article class="skill-card">
             <div class="skill-badge badge-ai">AI</div>
-            <h3>AI &amp; Security Tooling</h3>
+            <h3>Applied AI &amp; Packet Ops</h3>
             <p>LangChain4j, Ollama, Deep Java Library (DJL), Apache PDFBox, Pcap4J, Weka</p>
           </article>
 
           <article class="skill-card">
             <div class="skill-badge badge-git">Git</div>
-            <h3>Developer Workflow</h3>
+            <h3>Shipping &amp; Delivery</h3>
             <p>Git, GitHub, Maven, Eclipse, VS Code, Vercel</p>
           </article>
         </div>
@@ -228,8 +250,8 @@
       <div class="container">
         <div class="section-header-row">
           <div>
-            <span class="section-eyebrow">03 / PROJECTS</span>
-            <h2 class="section-title">Things I've been <span class="gradient-text">building.</span></h2>
+            <h2 class="section-title">Featured <span class="gradient-text">Builds.</span></h2>
+            <span class="section-eyebrow">03 / SHIPPED WORK</span>
           </div>
 
           <div class="filter-bar" role="tablist" aria-label="Filter projects">
@@ -245,19 +267,19 @@
             <div class="project-art">
               <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect width="360" height="150" fill="url(#g1)" />
-                <rect x="28" y="68" width="76" height="58" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-opacity="0.5" />
-                <polygon points="28,68 52,50 52,68 78,50 78,68 104,50 104,68" fill="#1e293b" stroke="#38bdf8" stroke-opacity="0.5" />
-                <rect x="132" y="34" width="200" height="92" rx="10" fill="#090f1d" stroke="#38bdf8" stroke-opacity="0.4" />
-                <rect x="148" y="88" width="18" height="24" rx="3" fill="#38bdf8" />
-                <rect x="174" y="72" width="18" height="40" rx="3" fill="#60a5fa" />
-                <rect x="200" y="58" width="18" height="54" rx="3" fill="#818cf8" />
-                <rect x="226" y="48" width="18" height="64" rx="3" fill="#34d399" />
-                <polyline points="256,94 276,74 294,82 316,52" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                <circle cx="316" cy="52" r="5" fill="#22c55e" />
+                <rect x="28" y="68" width="76" height="58" rx="6" fill="#ffffff" fill-opacity="0.16" stroke="#fbbf24" stroke-width="1.5" />
+                <polygon points="28,68 52,50 52,68 78,50 78,68 104,50 104,68" fill="#4c1d95" stroke="#fbbf24" stroke-width="1.5" />
+                <rect x="132" y="34" width="200" height="92" rx="10" fill="#2e1065" fill-opacity="0.72" stroke="#ddd6fe" stroke-opacity="0.5" />
+                <rect x="148" y="88" width="18" height="24" rx="3" fill="#fbbf24" />
+                <rect x="174" y="72" width="18" height="40" rx="3" fill="#c4b5fd" />
+                <rect x="200" y="58" width="18" height="54" rx="3" fill="#f59e0b" />
+                <rect x="226" y="48" width="18" height="64" rx="3" fill="#ede9fe" />
+                <polyline points="256,94 276,74 294,82 316,52" stroke="#fbbf24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="316" cy="52" r="5" fill="#fde047" />
                 <defs>
                   <linearGradient id="g1" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#0b192c" />
-                    <stop offset="1" stop-color="#172554" />
+                    <stop stop-color="#5b21b6" />
+                    <stop offset="1" stop-color="#7c3aed" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -279,20 +301,20 @@
             <div class="project-art">
               <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect width="360" height="150" fill="url(#g2)" />
-                <rect x="34" y="28" width="84" height="96" rx="8" fill="#111827" stroke="#a78bfa" stroke-opacity="0.55" />
-                <line x1="50" y1="50" x2="102" y2="50" stroke="#c4b5fd" stroke-width="3" stroke-linecap="round" />
-                <line x1="50" y1="66" x2="94" y2="66" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" />
-                <line x1="50" y1="80" x2="98" y2="80" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" />
-                <line x1="50" y1="94" x2="82" y2="94" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" />
-                <circle cx="235" cy="75" r="38" fill="#1e1b4b" stroke="#c084fc" stroke-opacity="0.65" />
-                <circle cx="235" cy="75" r="14" fill="#a855f7" fill-opacity="0.35" stroke="#e879f9" />
-                <line x1="118" y1="75" x2="197" y2="75" stroke="#c084fc" stroke-dasharray="4 4" stroke-width="2" />
-                <circle cx="272" cy="44" r="6" fill="#38bdf8" />
-                <circle cx="288" cy="96" r="6" fill="#34d399" />
+                <rect x="34" y="28" width="84" height="96" rx="8" fill="#2e1065" fill-opacity="0.72" stroke="#ddd6fe" stroke-opacity="0.55" />
+                <line x1="50" y1="50" x2="102" y2="50" stroke="#fbbf24" stroke-width="3" stroke-linecap="round" />
+                <line x1="50" y1="66" x2="94" y2="66" stroke="#ede9fe" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="50" y1="80" x2="98" y2="80" stroke="#c4b5fd" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="50" y1="94" x2="82" y2="94" stroke="#a78bfa" stroke-width="2.5" stroke-linecap="round" />
+                <circle cx="235" cy="75" r="38" fill="#4c1d95" stroke="#fbbf24" stroke-opacity="0.7" />
+                <circle cx="235" cy="75" r="14" fill="#fbbf24" fill-opacity="0.25" stroke="#fde047" />
+                <line x1="118" y1="75" x2="197" y2="75" stroke="#fbbf24" stroke-dasharray="4 4" stroke-width="2" />
+                <circle cx="272" cy="44" r="6" fill="#fde047" />
+                <circle cx="288" cy="96" r="6" fill="#ddd6fe" />
                 <defs>
                   <linearGradient id="g2" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#17112e" />
-                    <stop offset="1" stop-color="#311042" />
+                    <stop stop-color="#6d28d9" />
+                    <stop offset="1" stop-color="#4c1d95" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -314,20 +336,20 @@
             <div class="project-art">
               <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect width="360" height="150" fill="url(#g3)" />
-                <rect x="28" y="54" width="114" height="46" rx="10" fill="#f8fafc" />
-                <rect x="106" y="62" width="26" height="18" rx="3" fill="#0ea5e9" />
-                <path d="M62 67V87M52 77H72" stroke="#ef4444" stroke-width="5" stroke-linecap="round" />
-                <circle cx="54" cy="102" r="8" fill="#0f172a" />
-                <circle cx="122" cy="102" r="8" fill="#0f172a" />
-                <path d="M162 76C174 62 174 90 162 76ZM178 76C196 54 196 98 178 76Z" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" />
-                <rect x="234" y="34" width="44" height="82" rx="10" fill="#090f1d" stroke="#475569" />
-                <circle cx="256" cy="54" r="9" fill="#22c55e" />
-                <circle cx="256" cy="75" r="9" fill="#334155" />
-                <circle cx="256" cy="96" r="9" fill="#334155" />
+                <rect x="28" y="54" width="114" height="46" rx="10" fill="#ffffff" />
+                <rect x="106" y="62" width="26" height="18" rx="3" fill="#7c3aed" />
+                <path d="M62 67V87M52 77H72" stroke="#f59e0b" stroke-width="5" stroke-linecap="round" />
+                <circle cx="54" cy="102" r="8" fill="#2e1065" />
+                <circle cx="122" cy="102" r="8" fill="#2e1065" />
+                <path d="M162 76C174 62 174 90 162 76ZM178 76C196 54 196 98 178 76Z" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" />
+                <rect x="234" y="34" width="44" height="82" rx="10" fill="#2e1065" stroke="#ddd6fe" stroke-opacity="0.55" />
+                <circle cx="256" cy="54" r="9" fill="#fbbf24" />
+                <circle cx="256" cy="75" r="9" fill="#6d28d9" />
+                <circle cx="256" cy="96" r="9" fill="#6d28d9" />
                 <defs>
                   <linearGradient id="g3" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#062826" />
-                    <stop offset="1" stop-color="#0f3d3e" />
+                    <stop stop-color="#7c3aed" />
+                    <stop offset="1" stop-color="#5b21b6" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -349,14 +371,22 @@
             <div class="project-art">
               <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect width="360" height="150" fill="url(#g4)" />
-                <path d="M90 28L126 42V76C126 101 109 118 90 126C71 118 54 101 54 76V42L90 28Z" fill="#1e1b4b" stroke="#38bdf8" stroke-width="2.5" />
-                <path d="M77 77L86 86L105 65" stroke="#34d399" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
-                <rect x="164" y="38" width="160" height="74" rx="10" fill="#090f1d" stroke="#818cf8" stroke-opacity="0.45" />
-                <polyline points="178,86 204,64 228,80 256,48 286,70 308,56" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="96" cy="75" r="40" stroke="#fbbf24" stroke-opacity="0.35" stroke-width="2" />
+                <circle cx="96" cy="75" r="24" stroke="#fde047" stroke-opacity="0.65" stroke-width="2" stroke-dasharray="5 4" />
+                <circle cx="96" cy="75" r="8" fill="#fbbf24" />
+                <line x1="96" y1="75" x2="128" y2="47" stroke="#fde047" stroke-width="2.5" stroke-linecap="round" />
+                <rect x="156" y="34" width="174" height="82" rx="10" fill="#2e1065" fill-opacity="0.76" stroke="#fbbf24" stroke-opacity="0.55" />
+                <rect x="172" y="84" width="14" height="18" rx="2" fill="#c4b5fd" />
+                <rect x="194" y="70" width="14" height="32" rx="2" fill="#a78bfa" />
+                <rect x="216" y="54" width="14" height="48" rx="2" fill="#fbbf24" />
+                <rect x="238" y="64" width="14" height="38" rx="2" fill="#f59e0b" />
+                <rect x="260" y="48" width="14" height="54" rx="2" fill="#fde047" />
+                <rect x="282" y="60" width="14" height="42" rx="2" fill="#ddd6fe" />
+                <rect x="304" y="44" width="14" height="58" rx="2" fill="#fbbf24" />
                 <defs>
                   <linearGradient id="g4" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#131636" />
-                    <stop offset="1" stop-color="#281647" />
+                    <stop stop-color="#3b0764" />
+                    <stop offset="1" stop-color="#6d28d9" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -378,18 +408,18 @@
             <div class="project-art">
               <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect width="360" height="150" fill="url(#g5)" />
-                <polygon points="105,28 46,56 164,56" fill="#1e3a8a" stroke="#60a5fa" stroke-width="2" />
-                <rect x="56" y="58" width="16" height="54" fill="#3b82f6" fill-opacity="0.7" />
-                <rect x="97" y="58" width="16" height="54" fill="#3b82f6" fill-opacity="0.7" />
-                <rect x="138" y="58" width="16" height="54" fill="#3b82f6" fill-opacity="0.7" />
-                <rect x="42" y="112" width="126" height="10" rx="3" fill="#60a5fa" />
-                <rect x="196" y="44" width="124" height="72" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-opacity="0.5" />
-                <rect x="210" y="60" width="28" height="20" rx="4" fill="#f59e0b" fill-opacity="0.8" />
-                <line x1="210" y1="96" x2="296" y2="96" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+                <polygon points="105,28 46,56 164,56" fill="#4c1d95" stroke="#fbbf24" stroke-width="2" />
+                <rect x="56" y="58" width="16" height="54" fill="#ddd6fe" fill-opacity="0.45" />
+                <rect x="97" y="58" width="16" height="54" fill="#ddd6fe" fill-opacity="0.45" />
+                <rect x="138" y="58" width="16" height="54" fill="#ddd6fe" fill-opacity="0.45" />
+                <rect x="42" y="112" width="126" height="10" rx="3" fill="#fbbf24" />
+                <rect x="196" y="44" width="124" height="72" rx="10" fill="#2e1065" fill-opacity="0.75" stroke="#ddd6fe" stroke-opacity="0.5" />
+                <rect x="210" y="60" width="28" height="20" rx="4" fill="#f59e0b" />
+                <line x1="210" y1="96" x2="296" y2="96" stroke="#ede9fe" stroke-width="3" stroke-linecap="round" />
                 <defs>
                   <linearGradient id="g5" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#0d1b3e" />
-                    <stop offset="1" stop-color="#1e293b" />
+                    <stop stop-color="#6d28d9" />
+                    <stop offset="1" stop-color="#4c1d95" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -411,16 +441,16 @@
             <div class="project-art">
               <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect width="360" height="150" fill="url(#g6)" />
-                <ellipse cx="104" cy="48" rx="44" ry="12" fill="#1e293b" stroke="#f472b6" />
-                <path d="M60 48V102C60 108.6 79.7 114 104 114C128.3 114 148 108.6 148 102V48" stroke="#f472b6" />
-                <ellipse cx="104" cy="76" rx="44" ry="12" stroke="#f472b6" stroke-opacity="0.5" />
-                <circle cx="242" cy="72" r="28" stroke="#fb7185" stroke-width="4" fill="#2a0d1c" />
-                <line x1="262" y1="92" x2="288" y2="118" stroke="#fb7185" stroke-width="5" stroke-linecap="round" />
-                <circle cx="242" cy="72" r="7" fill="#f43f5e" />
+                <ellipse cx="104" cy="48" rx="44" ry="12" fill="#2e1065" stroke="#fbbf24" />
+                <path d="M60 48V102C60 108.6 79.7 114 104 114C128.3 114 148 108.6 148 102V48" stroke="#fbbf24" />
+                <ellipse cx="104" cy="76" rx="44" ry="12" stroke="#ddd6fe" stroke-opacity="0.55" />
+                <circle cx="242" cy="72" r="28" stroke="#fde047" stroke-width="4" fill="#2e1065" />
+                <line x1="262" y1="92" x2="288" y2="118" stroke="#fde047" stroke-width="5" stroke-linecap="round" />
+                <circle cx="242" cy="72" r="7" fill="#f59e0b" />
                 <defs>
                   <linearGradient id="g6" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#260c1a" />
-                    <stop offset="1" stop-color="#3b122b" />
+                    <stop stop-color="#7c3aed" />
+                    <stop offset="1" stop-color="#4c1d95" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -442,19 +472,19 @@
             <div class="project-art">
               <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect width="360" height="150" fill="url(#g7)" />
-                <rect x="132" y="34" width="96" height="82" rx="12" fill="#090f1d" stroke="#38bdf8" stroke-width="2" />
-                <rect x="150" y="52" width="60" height="46" rx="6" fill="#1e293b" />
-                <path d="M174 64L165 76H180L172 88" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                <line x1="152" y1="22" x2="152" y2="34" stroke="#94a3b8" stroke-width="2.5" />
-                <line x1="180" y1="22" x2="180" y2="34" stroke="#94a3b8" stroke-width="2.5" />
-                <line x1="208" y1="22" x2="208" y2="34" stroke="#94a3b8" stroke-width="2.5" />
-                <line x1="152" y1="116" x2="152" y2="128" stroke="#94a3b8" stroke-width="2.5" />
-                <line x1="180" y1="116" x2="180" y2="128" stroke="#94a3b8" stroke-width="2.5" />
-                <line x1="208" y1="116" x2="208" y2="128" stroke="#94a3b8" stroke-width="2.5" />
+                <rect x="132" y="34" width="96" height="82" rx="12" fill="#2e1065" stroke="#fbbf24" stroke-width="2" />
+                <rect x="150" y="52" width="60" height="46" rx="6" fill="#4c1d95" />
+                <path d="M174 64L165 76H180L172 88" stroke="#fde047" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                <line x1="152" y1="22" x2="152" y2="34" stroke="#ddd6fe" stroke-width="2.5" />
+                <line x1="180" y1="22" x2="180" y2="34" stroke="#ddd6fe" stroke-width="2.5" />
+                <line x1="208" y1="22" x2="208" y2="34" stroke="#ddd6fe" stroke-width="2.5" />
+                <line x1="152" y1="116" x2="152" y2="128" stroke="#ddd6fe" stroke-width="2.5" />
+                <line x1="180" y1="116" x2="180" y2="128" stroke="#ddd6fe" stroke-width="2.5" />
+                <line x1="208" y1="116" x2="208" y2="128" stroke="#ddd6fe" stroke-width="2.5" />
                 <defs>
                   <linearGradient id="g7" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#091e2c" />
-                    <stop offset="1" stop-color="#102a43" />
+                    <stop stop-color="#5b21b6" />
+                    <stop offset="1" stop-color="#7c3aed" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -476,14 +506,14 @@
             <div class="project-art">
               <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect width="360" height="150" fill="url(#g8)" />
-                <path d="M52 96L146 66L122 44L134 40L168 62L218 46C228 43 236 47 238 53C240 59 233 66 222 70L74 114L52 96Z" fill="#38bdf8" fill-opacity="0.85" />
-                <rect x="252" y="34" width="68" height="82" rx="8" fill="#0f172a" stroke="#818cf8" stroke-opacity="0.6" />
-                <circle cx="286" cy="64" r="10" stroke="#34d399" stroke-width="2.5" />
-                <path d="M270 94C272 84 300 84 302 94" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" />
+                <path d="M52 96L146 66L122 44L134 40L168 62L218 46C228 43 236 47 238 53C240 59 233 66 222 70L74 114L52 96Z" fill="#fbbf24" />
+                <rect x="252" y="34" width="68" height="82" rx="8" fill="#2e1065" stroke="#ddd6fe" stroke-opacity="0.6" />
+                <circle cx="286" cy="64" r="10" stroke="#fde047" stroke-width="2.5" />
+                <path d="M270 94C272 84 300 84 302 94" stroke="#fde047" stroke-width="2.5" stroke-linecap="round" />
                 <defs>
                   <linearGradient id="g8" x1="0" y1="0" x2="360" y2="150" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#111838" />
-                    <stop offset="1" stop-color="#1d3557" />
+                    <stop stop-color="#6d28d9" />
+                    <stop offset="1" stop-color="#4c1d95" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -508,8 +538,8 @@
     <section class="section" id="education">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">04 / EDUCATION</span>
-          <h2 class="section-title">Academic <span class="gradient-text">journey.</span></h2>
+          <h2 class="section-title">Education &amp; <span class="gradient-text">Milestones.</span></h2>
+          <span class="section-eyebrow">04 / ACADEMIC RECORD</span>
         </div>
 
         <div class="edu-timeline">
@@ -555,8 +585,8 @@
     <section class="section" id="certifications">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">05 / CERTIFICATIONS</span>
-          <h2 class="section-title">Credentials &amp; <span class="gradient-text">training.</span></h2>
+          <h2 class="section-title">Training &amp; <span class="gradient-text">Credentials.</span></h2>
+          <span class="section-eyebrow">05 / VERIFIED TRACKS</span>
         </div>
 
         <div class="cards-grid-2">
@@ -585,8 +615,8 @@
     <section class="section" id="volunteering">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">06 / VOLUNTEERING</span>
-          <h2 class="section-title">Volunteering &amp; <span class="gradient-text">highlights.</span></h2>
+          <h2 class="section-title">Volunteering &amp; <span class="gradient-text">Competitions.</span></h2>
+          <span class="section-eyebrow">06 / COMMUNITY &amp; ARENAS</span>
         </div>
 
         <div class="cards-grid-2">
@@ -621,14 +651,14 @@
     <section class="section" id="contact">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">07 / CONTACT</span>
-          <h2 class="section-title">Let's start a <span class="gradient-text">conversation.</span></h2>
+          <h2 class="section-title">Start a <span class="gradient-text">Conversation.</span></h2>
+          <span class="section-eyebrow">07 / DIRECT CONNECT</span>
           <p class="section-desc">Have an internship opportunity, project idea, or collaboration in mind? My inbox is open.</p>
         </div>
 
         <div class="contact-grid">
           <div class="contact-links">
-            <a href="mailto:manognashree2@gmail.com" id="contact-email-link" class="contact-item">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=manognashree2@gmail.com" target="_blank" rel="noopener noreferrer" id="contact-email-link" class="contact-item">
               <div class="contact-icon">✉</div>
               <div>
                 <span class="contact-label">EMAIL ME</span>
@@ -673,7 +703,9 @@
             </div>
 
             <button type="submit" class="btn btn-primary btn-full">Send Mail ↗</button>
-            <p class="form-note" id="mail-status">Opens Gmail on desktop or your mail app on mobile.</p>
+            <p class="form-note" id="mail-status">
+              Opens Gmail on the first click — or <a id="direct-mail-fallback" href="mailto:manognashree2@gmail.com">open default mail app</a>.
+            </p>
           </form>
         </div>
       </div>
