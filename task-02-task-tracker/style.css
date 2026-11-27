@@ -1,0 +1,107 @@
+/* =========================================
+   TASKNOVA — TURN PLANS INTO PROGRESS
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --primary: #7c3aed;
+}
+
+html.dark {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f8fafc;
+    --primary: #8b5cf6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Larger root + body text for clear readability across the dashboard */
+html {
+    font-size: 22px;
+}
+
+html,
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-size: 1.15rem !important;
+    line-height: 1.6 !important;
+    transition: background 0.3s ease, color 0.25s ease;
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 19px;
+    }
+}
+
+/* Headings */
+body h1,
+body .text-3xl,
+body .text-4xl {
+    font-size: 2.6rem !important;
+    line-height: 1.2 !important;
+}
+
+body h2 {
+    font-size: 1.75rem !important;
+    line-height: 1.25 !important;
+}
+
+body h3,
+body h4 {
+    font-size: 1.35rem !important;
+    line-height: 1.3 !important;
+}
+
+/* Big stat numbers */
+body .text-5xl {
+    font-size: 3.1rem !important;
+    line-height: 1.1 !important;
+}
+
+/* Prevent tiny micro-text in badges, labels, buttons, and inputs */
+body .text-xs,
+body .text-sm,
+body .text-base,
+body .text-lg,
+body input,
+body select,
+body button {
+    font-size: 1.05rem !important;
+    line-height: 1.45 !important;
+}
+
+/* Progress Bar Gradient */
+.progress-gradient {
+    background: linear-gradient(90deg, #8B5CF6, #EC4899);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.45);
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.75);
+}

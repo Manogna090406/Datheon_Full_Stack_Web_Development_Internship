@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>TaskNova — Turn Plans Into Progress</title>
+
+    <link rel="stylesheet" href="styles.css?v=20261127d" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#8B5CF6",
+                        secondary: "#6366F1",
+                        accent: "#EC4899",
+                        success: "#22C55E",
+                        warning: "#F59E0B",
+                        danger: "#EF4444"
+                    }
+                }
+            }
+        };
+    </script>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-[#F8FAFC] dark:bg-[#0F172A] text-[#0F172A] dark:text-[#F8FAFC]">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+        const { motion, AnimatePresence, Reorder } = window.Motion;
+
+        const Icon = ({ name, className = "w-5 h-5" }) => {
+            useEffect(() => {
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
+            });
+            return <i data-lucide={name} className={className}></i>;
+        };
+
+        const QUOTES = [
+            "Productivity is never an accident. It is always the result of commitment.",
+            "Small progress every day leads to big results.",
+            "Your future is created by what you do today."
+        ];
+
+        const TASKS_STORAGE_KEY = "tasknova_missions_v1";
+        const THEME_STORAGE_KEY = "theme";
+
+        function App() {
+            const [tasks, setTasks] = useState(() => {
+                try {
+                    const saved = localStorage.getItem(TASKS_STORAGE_KEY);
+                    const parsed = saved ? JSON.parse(saved) : [];
+                    return Array.isArray(parsed) ? parsed : [];
+                } catch {
+                    return [];
+                }
+            });
+
+            const [theme, setTheme] = useState(() => {
+                const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+                return savedTheme === "light" || savedTheme === "dark" ? savedTheme : "dark";
+            });
+
+            const [activeNav, setActiveNav] = useState("dashboard");
+            const [statusFilter, setStatusFilter] = useState("all");
+            const [categoryFilter, setCategoryFilter] = useState("all");
+            const [searchQuery, setSearchQuery] = useState("");
+            const [quoteIndex, setQuoteIndex] = useState(0);
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+            const [title, setTitle] = useState("");
+            const [category, setCategory] = useState("Work");
+            const [priority, setPriority] = useState("Medium");
+            const [dueDate, setDueDate] = useState("");
+            const [editingId, setEditingId] = useState(null);
+
+            const [toast, setToast] = useState(null);
+
+            useEffect(() => {
+                localStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks));
+            }, [tasks]);
+
+            useEffect(() => {
+                const rootEl = document.documentElement;
+                rootEl.classList.remove("light", "dark");
+                rootEl.classList.add(theme);
+                localStorage.setItem(THEME_STORAGE_KEY, theme);
+            }, [theme]);
+
+            const toggleTheme = () => {
+                setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+            };
+
+            useEffect(() => {
+                const timer = setInterval(() => {
+                    setQuoteIndex((prev) => (prev + 1) % QUOTES.length);
+                }, 8000);
+                return () => clearInterval(timer);
+            }, []);
+
+            const triggerToast = (message) => {
+                setToast({ message, id: Date.now() });
+                setTimeout(() => {
+                    setToast(null);
+                }, 3000);
+            };
+
+            const fireConfetti = () => {
+                if (window.confetti) {
+                    window.confetti({
+                        particleCount: 70,
+                        spread: 65,
+                        origin: { y: 0.7 },
+                        colors: ["#8B5CF6", "#6366F1", "#EC4899", "#22C55E"]
+                    });
+                }
+            };
+
+            const handleFormSubmit = (e) => {
+                e.preventDefault();
+                if (!title.trim()) return;
+
+                if (editingId) {
+                    setTasks((prev) =>
+                        prev.map((t) =>
+                            t.id === editingId
+                                ? { ...t, title: title.trim(), category, priority, dueDate }
+                                : t
+                        )
+                    );
+                    triggerToast("Mission updated successfully!");
+                    setEditingId(null);
+                } else {
+                    const newTask = {
+                        id: `mission-${Date.now()}`,
+                        title: title.trim(),
+                        category,
+                        priority,
+                        dueDate,
+                        completed: false
+                    };
+                    setTasks((prev) => [newTask, ...prev]);
+                    triggerToast("New mission launched!");
+                }
+
+                setTitle("");
+                setCategory("Work");
+                setPriority("Medium");
+                setDueDate("");
+            };
+
+            const toggleComplete = (id) => {
+                setTasks((prev) =>
+                    prev.map((t) => {
+                        if (t.id === id) {
+                            const nextState = !t.completed;
+                            if (nextState) {
+                                fireConfetti();
+                                triggerToast("Achievement unlocked! Mission completed");
+                            }
+                            return { ...t, completed: nextState };
+                        }
+                        return t;
+                    })
+                );
+            };
+
+            const startEdit = (task) => {
+                setEditingId(task.id);
+                setTitle(task.title);
+                setCategory(task.category);
+                setPriority(task.priority);
+                setDueDate(task.dueDate || "");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            };
+
+            const deleteTask = (id) => {
+                setTasks((prev) => prev.filter((t) => t.id !== id));
+                if (editingId === id) {
+                    setEditingId(null);
+                    setTitle("");
+                }
+                triggerToast("Mission removed from workspace");
+            };
+
+            const clearAllTasks = () => {
+                setTasks([]);
+                setEditingId(null);
+                setTitle("");
+                triggerToast("All missions cleared");
+            };
+
+            const stats = useMemo(() => {
+                const total = tasks.length;
+                const completed = tasks.filter((t) => t.completed).length;
+                const inProgress = total - completed;
+                const rate = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+                const byCategory = {
+                    Work: tasks.filter((t) => t.category === "Work").length,
+                    Study: tasks.filter((t) => t.category === "Study").length,
+                    Personal: tasks.filter((t) => t.category === "Personal").length
+                };
+
+                return { total, completed, inProgress, rate, byCategory };
+            }, [tasks]);
+
+            const filteredTasks = useMemo(() => {
+                return tasks.filter((t) => {
+                    const matchesStatus =
+                        statusFilter === "all" ||
+                        (statusFilter === "active" && !t.completed) ||
+                        (statusFilter === "completed" && t.completed);
+
+                    const matchesCategory =
+                        categoryFilter === "all" || t.category === categoryFilter;
+
+                    const matchesSearch =
+                        t.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        t.category.toLowerCase().includes(searchQuery.toLowerCase());
+
+                    return matchesStatus && matchesCategory && matchesSearch;
+                });
+            }, [tasks, statusFilter, categoryFilter, searchQuery]);
+
+            const handleNavClick = (navId, filter = "all") => {
+                setActiveNav(navId);
+                setStatusFilter(filter);
+                setMobileMenuOpen(false);
+            };
+
+            const priorityBadge = (level) => {
+                if (level === "High") {
+                    return "bg-rose-100 dark:bg-rose-500/20 text-rose-700 dark:text-rose-300 border-rose-300 dark:border-rose-500/35";
+                }
+                if (level === "Medium") {
+                    return "bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-300 border-amber-300 dark:border-amber-500/35";
+                }
+                return "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-500/35";
+            };
+
+            const categoryBadge = (cat) => {
+                if (cat === "Work") {
+                    return "bg-violet-100 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 border-violet-300 dark:border-violet-500/35";
+                }
+                if (cat === "Study") {
+                    return "bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border-indigo-300 dark:border-indigo-500/35";
+                }
+                return "bg-pink-100 dark:bg-pink-500/20 text-pink-700 dark:text-pink-300 border-pink-300 dark:border-pink-500/35";
+            };
+
+            const isFiltered = statusFilter !== "all" || categoryFilter !== "all" || searchQuery.trim() !== "";
+
+            const cardClasses =
+                "bg-[#FFFFFF] dark:bg-[#1E293B] text-[#0F172A] dark:text-[#F8FAFC] border border-slate-200 dark:border-slate-700 shadow-lg";
+            const hoverCardClasses =
+                "bg-[#FFFFFF] dark:bg-[#1E293B] text-[#0F172A] dark:text-[#F8FAFC] border border-slate-200 dark:border-slate-700 shadow-lg hover:-translate-y-1.5 hover:border-violet-400 dark:hover:border-violet-500 transition-all duration-300";
+            const inputClasses =
+                "bg-slate-50 dark:bg-slate-900 text-[#0F172A] dark:text-[#F8FAFC] placeholder-slate-400 dark:placeholder-slate-500 border border-slate-300 dark:border-slate-700 focus:outline-none focus:border-violet-600 dark:focus:border-violet-500";
+            const subBoxClasses =
+                "bg-slate-50 dark:bg-slate-900/80 text-[#0F172A] dark:text-[#F8FAFC] border border-slate-200 dark:border-slate-700/80";
+            const mutedClasses = "text-slate-600 dark:text-slate-400";
+
+            return (
+                <div className="min-h-screen flex flex-col lg:flex-row bg-[#F8FAFC] dark:bg-[#0F172A] text-[#0F172A] dark:text-[#F8FAFC]">
+                    {/* Mobile Header */}
+                    <div className="lg:hidden flex items-center justify-between p-4 bg-[#FFFFFF] dark:bg-[#1E293B] border-b border-slate-200 dark:border-slate-700 sticky top-0 z-40">
+                        <div className="flex items-center gap-2.5">
+                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-600 to-pink-500 flex items-center justify-center text-white font-extrabold text-lg shadow-md">
+                                ✦
+                            </div>
+                            <span className="font-extrabold text-2xl tracking-tight text-violet-600 dark:text-violet-400">
+                                TaskNova
+                            </span>
+                        </div>
+                        <div className="flex items-center gap-2.5">
+                            <button
+                                type="button"
+                                onClick={toggleTheme}
+                                className="w-11 h-11 rounded-full bg-gradient-to-r from-violet-500 to-pink-500 text-white flex items-center justify-center text-lg shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer"
+                                aria-label="Toggle Theme"
+                            >
+                                {theme === "dark" ? "☀️" : "🌙"}
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setMobileMenuOpen((prev) => !prev)}
+                                className={`p-2.5 rounded-xl ${cardClasses} cursor-pointer`}
+                                aria-label="Toggle Menu"
+                            >
+                                <Icon name={mobileMenuOpen ? "x" : "menu"} className="w-6 h-6" />
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Responsive Sidebar Navigation */}
+                    <aside
+                        className={`fixed lg:sticky top-0 left-0 z-30 h-screen w-80 p-6 flex flex-col justify-between bg-[#FFFFFF] dark:bg-[#1E293B] text-[#0F172A] dark:text-[#F8FAFC] border-r border-slate-200 dark:border-slate-700 transition-transform duration-300 ${
+                            mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+                        }`}
+                    >
+                        <div>
+                            <div className="flex items-center justify-between gap-3 mb-8">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-600 to-pink-500 flex items-center justify-center text-white text-2xl font-extrabold shadow-lg">
+                                        ✦
+                                    </div>
+                                    <div>
+                                        <h2 className="text-2xl font-extrabold tracking-tight text-violet-600 dark:text-violet-400">
+                                            TaskNova
+                                        </h2>
+                                        <p className={`text-sm font-medium ${mutedClasses}`}>
+                                            Turn Plans Into Progress
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    onClick={toggleTheme}
+                                    className="hidden lg:flex w-12 h-12 rounded-full bg-gradient-to-r from-violet-500 to-pink-500 text-white items-center justify-center text-xl shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer shrink-0"
+                                    aria-label="Toggle Theme"
+                                    title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                                >
+                                    {theme === "dark" ? "☀️" : "🌙"}
+                                </button>
+                            </div>
+
+                            <p className={`text-xs font-bold uppercase tracking-wider ${mutedClasses} px-3 mb-3`}>
+                                Workspace
+                            </p>
+                            <nav className="space-y-1.5">
+                                {[
+                                    { id: "dashboard", label: "🏠 Dashboard", filter: "all" },
+                                    { id: "all", label: "📋 All Tasks", filter: "all" },
+                                    { id: "active", label: "⚡ In Progress", filter: "active" },
+                                    { id: "completed", label: "✅ Completed", filter: "completed" },
+                                    { id: "analytics", label: "📊 Analytics", filter: "all" },
+                                    { id: "settings", label: "⚙ Settings", filter: "all" }
+                                ].map((item) => {
+                                    const active = activeNav === item.id;
+                                    return (
+                                        <button
+                                            type="button"
+                                            key={item.id}
+                                            onClick={() => handleNavClick(item.id, item.filter)}
+                                            className={`w-full flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-semibold transition-all cursor-pointer ${
+                                                active
+                                                    ? "bg-violet-600 text-white shadow-md"
+                                                    : `hover:bg-slate-100 dark:hover:bg-slate-800 ${mutedClasses}`
+                                            }`}
+                                        >
+                                            <span>{item.label}</span>
+                                            {item.id === "active" && (
+                                                <span className={`text-xs px-2.5 py-0.5 rounded-full font-bold ${
+                                                    active ? "bg-white/20 text-white" : "bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300"
+                                                }`}>
+                                                    {stats.inProgress}
+                                                </span>
+                                            )}
+                                            {item.id === "completed" && (
+                                                <span className={`text-xs px-2.5 py-0.5 rounded-full font-bold ${
+                                                    active ? "bg-white/20 text-white" : "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300"
+                                                }`}>
+                                                    {stats.completed}
+                                                </span>
+                                            )}
+                                        </button>
+                                    );
+                                })}
+                            </nav>
+                        </div>
+
+                        <div className="pt-5 border-t border-slate-200 dark:border-slate-700 space-y-4">
+                            <button
+                                type="button"
+                                onClick={toggleTheme}
+                                className={`w-full py-3 px-4 rounded-xl ${subBoxClasses} flex items-center justify-center gap-2.5 text-base font-bold hover:border-violet-500 transition cursor-pointer`}
+                            >
+                                <span>{theme === "dark" ? "☀️" : "🌙"}</span>
+                                <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+                            </button>
+
+                            <div className="flex items-center gap-3 px-1">
+                                <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-violet-600 to-pink-500 flex items-center justify-center text-white font-bold text-base shadow-md">
+                                    TN
+                                </div>
+                                <div>
+                                    <p className="text-base font-bold leading-tight">TaskNova</p>
+                                    <p className={`text-sm ${mutedClasses}`}>
+                                        {theme === "dark" ? "Dark Theme Active" : "Light Theme Active"}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    {/* Main Dashboard Content */}
+                    <main className="flex-1 p-5 sm:p-8 lg:p-10 max-w-7xl mx-auto w-full space-y-8">
+                        {/* 1. Hero Welcome Section */}
+                        <motion.section
+                            initial={{ opacity: 0, y: -12 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.35 }}
+                            className={`${cardClasses} rounded-3xl p-6 sm:p-8`}
+                        >
+                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                                <div>
+                                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold bg-violet-100 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 border border-violet-300 dark:border-violet-500/35 mb-3">
+                                        👋 Welcome Back
+                                    </span>
+                                    <h1 className="font-extrabold tracking-tight mb-2">
+                                        TaskNova{" "}
+                                        <span className="text-violet-600 dark:text-violet-400">
+                                            — Turn Plans Into Progress
+                                        </span>
+                                    </h1>
+                                    <p className={`text-base sm:text-lg ${mutedClasses} max-w-2xl`}>
+                                        Transform your ideas into achievements. Organize, track, and complete every task with confidence.
+                                    </p>
+                                </div>
+
+                                <div className={`px-4 py-3 rounded-2xl ${subBoxClasses} text-sm font-bold flex items-center gap-2 shrink-0`}>
+                                    <Icon name="calendar" className="w-5 h-5 text-violet-600 dark:text-violet-400" />
+                                    {new Date().toLocaleDateString("en-IN", {
+                                        weekday: "short",
+                                        day: "numeric",
+                                        month: "short",
+                                        year: "numeric"
+                                    })}
+                                </div>
+                            </div>
+                        </motion.section>
+
+                        {/* Settings Panel */}
+                        {activeNav === "settings" && (
+                            <motion.section
+                                initial={{ opacity: 0, scale: 0.98 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className={`${cardClasses} rounded-3xl p-6 sm:p-8 space-y-4`}
+                            >
+                                <h2 className="font-bold">⚙ Workspace Settings</h2>
+                                <p className={`text-base ${mutedClasses}`}>
+                                    Switch between Light and Dark theme or clear saved tasks from localStorage.
+                                </p>
+                                <div className="flex flex-wrap gap-4 pt-2">
+                                    <button
+                                        type="button"
+                                        onClick={toggleTheme}
+                                        className="px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-base font-semibold transition cursor-pointer"
+                                    >
+                                        Switch to {theme === "dark" ? "Light" : "Dark"} Theme
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={clearAllTasks}
+                                        className="px-6 py-3 rounded-xl bg-rose-100 dark:bg-rose-500/20 hover:bg-rose-200 dark:hover:bg-rose-500/30 border border-rose-300 dark:border-rose-500/40 text-rose-700 dark:text-rose-300 text-base font-semibold transition cursor-pointer"
+                                    >
+                                        Clear All Tasks
+                                    </button>
+                                </div>
+                            </motion.section>
+                        )}
+
+                        {/* 2. Dashboard Statistics Cards */}
+                        <section className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                            <motion.div
+                                initial={{ opacity: 0, y: 14 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.05 }}
+                                className={`${hoverCardClasses} rounded-2xl p-6`}
+                            >
+                                <div className="flex items-center justify-between mb-3">
+                                    <span className="text-base font-bold">📋 Total Tasks</span>
+                                    <span className="w-10 h-10 rounded-xl bg-violet-100 dark:bg-violet-500/20 text-violet-600 dark:text-violet-400 flex items-center justify-center">
+                                        <Icon name="layers" className="w-5 h-5" />
+                                    </span>
+                                </div>
+                                <h2 className="text-5xl font-extrabold text-violet-600 dark:text-violet-400 mb-1">
+                                    {stats.total}
+                                </h2>
+                                <p className={`text-sm ${mutedClasses}`}>Keep track of all your productivity goals.</p>
+                            </motion.div>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 14 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 }}
+                                className={`${hoverCardClasses} rounded-2xl p-6`}
+                            >
+                                <div className="flex items-center justify-between mb-3">
+                                    <span className="text-base font-bold">⚡ In Progress</span>
+                                    <span className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                                        <Icon name="zap" className="w-5 h-5" />
+                                    </span>
+                                </div>
+                                <h2 className="text-5xl font-extrabold text-amber-600 dark:text-amber-400 mb-1">
+                                    {stats.inProgress}
+                                </h2>
+                                <p className={`text-sm ${mutedClasses}`}>Tasks currently demanding your attention.</p>
+                            </motion.div>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 14 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.15 }}
+                                className={`${hoverCardClasses} rounded-2xl p-6`}
+                            >
+                                <div className="flex items-center justify-between mb-3">
+                                    <span className="text-base font-bold">✅ Achievements</span>
+                                    <span className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                                        <Icon name="trophy" className="w-5 h-5" />
+                                    </span>
+                                </div>
+                                <h2 className="text-5xl font-extrabold text-emerald-600 dark:text-emerald-400 mb-1">
+                                    {stats.completed}
+                                </h2>
+                                <p className={`text-sm ${mutedClasses}`}>Successfully completed milestones.</p>
+                            </motion.div>
+                        </section>
+
+                        {/* 3. Create New Mission Form */}
+                        {activeNav !== "analytics" && (
+                            <motion.section
+                                initial={{ opacity: 0, y: 14 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.2 }}
+                                className={`${cardClasses} rounded-3xl p-6 sm:p-8`}
+                            >
+                                <div className="mb-5">
+                                    <h2 className="font-extrabold">
+                                        {editingId ? "✏️ Update Mission" : "Create New Mission 🚀"}
+                                    </h2>
+                                    <p className={`text-sm sm:text-base ${mutedClasses} mt-1`}>
+                                        Plan smarter, stay organized, and accomplish more every day.
+                                    </p>
+                                </div>
+
+                                <form onSubmit={handleFormSubmit} className="grid grid-cols-1 md:grid-cols-12 gap-3.5">
+                                    <input
+                                        type="text"
+                                        value={title}
+                                        onChange={(e) => setTitle(e.target.value)}
+                                        placeholder="Enter a new mission..."
+                                        required
+                                        className={`md:col-span-5 px-4 py-3.5 rounded-xl ${inputClasses} text-base`}
+                                    />
+
+                                    <select
+                                        value={category}
+                                        onChange={(e) => setCategory(e.target.value)}
+                                        className={`md:col-span-2 px-3.5 py-3.5 rounded-xl ${inputClasses} text-base`}
+                                    >
+                                        <option value="Work">Work</option>
+                                        <option value="Study">Study</option>
+                                        <option value="Personal">Personal</option>
+                                    </select>
+
+                                    <select
+                                        value={priority}
+                                        onChange={(e) => setPriority(e.target.value)}
+                                        className={`md:col-span-2 px-3.5 py-3.5 rounded-xl ${inputClasses} text-base`}
+                                    >
+                                        <option value="High">High</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Low">Low</option>
+                                    </select>
+
+                                    <input
+                                        type="date"
+                                        value={dueDate}
+                                        onChange={(e) => setDueDate(e.target.value)}
+                                        className={`md:col-span-3 px-3.5 py-3.5 rounded-xl ${inputClasses} text-base`}
+                                    />
+
+                                    <div className="md:col-span-12 flex flex-wrap items-center justify-end gap-3 pt-1">
+                                        {editingId && (
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    setEditingId(null);
+                                                    setTitle("");
+                                                }}
+                                                className={`px-5 py-3 rounded-xl ${subBoxClasses} text-base font-semibold cursor-pointer`}
+                                            >
+                                                Cancel
+                                            </button>
+                                        )}
+                                        <button
+                                            type="submit"
+                                            className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-violet-600 via-indigo-600 to-pink-600 hover:opacity-95 text-white text-base font-bold shadow-lg transition cursor-pointer"
+                                        >
+                                            {editingId ? "✓ Save Changes" : "✨ Create Task"}
+                                        </button>
+                                    </div>
+                                </form>
+                            </motion.section>
+                        )}
+
+                        {/* 4. Task Management List */}
+                        {activeNav !== "analytics" && (
+                            <motion.section
+                                initial={{ opacity: 0, y: 14 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.25 }}
+                                className={`${cardClasses} rounded-3xl p-6 sm:p-8 space-y-6`}
+                            >
+                                <div className="flex flex-col md:flex-row gap-3.5 justify-between">
+                                    <div className="relative flex-1">
+                                        <span className={`absolute left-4 top-4 ${mutedClasses}`}>
+                                            <Icon name="search" className="w-5 h-5" />
+                                        </span>
+                                        <input
+                                            type="text"
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                            placeholder="Search tasks by title or category..."
+                                            className={`w-full pl-11 pr-4 py-3 rounded-xl ${inputClasses} text-base`}
+                                        />
+                                    </div>
+
+                                    <div className="flex flex-wrap gap-2">
+                                        {["all", "Work", "Study", "Personal"].map((cat) => (
+                                            <button
+                                                type="button"
+                                                key={cat}
+                                                onClick={() => setCategoryFilter(cat)}
+                                                className={`px-4 py-2.5 rounded-xl text-sm font-bold border transition cursor-pointer ${
+                                                    categoryFilter === cat
+                                                        ? "bg-violet-600 border-violet-600 text-white"
+                                                        : `${subBoxClasses} ${mutedClasses}`
+                                                }`}
+                                            >
+                                                {cat === "all" ? "All Categories" : cat}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-700 pb-3">
+                                    <div className="flex gap-2">
+                                        {[
+                                            { id: "all", label: "All" },
+                                            { id: "active", label: "In Progress" },
+                                            { id: "completed", label: "Completed" }
+                                        ].map((tab) => (
+                                            <button
+                                                type="button"
+                                                key={tab.id}
+                                                onClick={() => setStatusFilter(tab.id)}
+                                                className={`px-3.5 py-2 rounded-lg text-sm font-bold transition cursor-pointer ${
+                                                    statusFilter === tab.id
+                                                        ? "bg-violet-600 text-white"
+                                                        : `${mutedClasses} hover:bg-slate-100 dark:hover:bg-slate-800`
+                                                }`}
+                                            >
+                                                {tab.label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                    <span className={`text-sm ${mutedClasses}`}>
+                                        {!isFiltered ? "Drag items to reorder" : `Showing ${filteredTasks.length} tasks`}
+                                    </span>
+                                </div>
+
+                                {filteredTasks.length === 0 ? (
+                                    <div className="text-center py-14 space-y-2">
+                                        <div className="text-5xl">📋</div>
+                                        <h3 className="font-bold">No tasks yet</h3>
+                                        <p className={`text-sm ${mutedClasses}`}>
+                                            Create a task above to start tracking your progress.
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <Reorder.Group
+                                        axis="y"
+                                        values={isFiltered ? filteredTasks : tasks}
+                                        onReorder={(newOrder) => {
+                                            if (!isFiltered) setTasks(newOrder);
+                                        }}
+                                        className="space-y-3"
+                                    >
+                                        <AnimatePresence>
+                                            {filteredTasks.map((task) => {
+                                                const statusLabel = task.completed ? "Completed" : "Due";
+                                                const statusStyle = task.completed
+                                                    ? "text-emerald-600 dark:text-emerald-400 font-bold"
+                                                    : "text-amber-600 dark:text-amber-400 font-bold";
+
+                                                return (
+                                                    <Reorder.Item
+                                                        key={task.id}
+                                                        value={task}
+                                                        dragListener={!isFiltered}
+                                                        initial={{ opacity: 0, y: 10 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        exit={{ opacity: 0, scale: 0.96 }}
+                                                        className={`${subBoxClasses} rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
+                                                            task.completed ? "opacity-80" : ""
+                                                        }`}
+                                                    >
+                                                        <div className="flex items-start sm:items-center gap-3.5 flex-1 min-w-0">
+                                                            {!isFiltered && (
+                                                                <span className={`cursor-grab active:cursor-grabbing ${mutedClasses}`}>
+                                                                    <Icon name="grip-vertical" className="w-5 h-5" />
+                                                                </span>
+                                                            )}
+
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => toggleComplete(task.id)}
+                                                                aria-label={task.completed ? "Mark as due" : "Mark as completed"}
+                                                                className={`w-7 h-7 rounded-md border-2 flex items-center justify-center shrink-0 transition cursor-pointer ${
+                                                                    task.completed
+                                                                        ? "bg-emerald-500 border-emerald-500 text-white"
+                                                                        : "bg-white dark:bg-slate-800 border-slate-400 dark:border-slate-500 text-transparent hover:border-violet-500"
+                                                                }`}
+                                                            >
+                                                                <Icon name="check" className="w-4 h-4" />
+                                                            </button>
+
+                                                            <div className="min-w-0 flex-1">
+                                                                <h4
+                                                                    className={`text-xl font-extrabold truncate ${
+                                                                        task.completed ? `line-through ${mutedClasses}` : "text-[#0F172A] dark:text-[#F8FAFC]"
+                                                                    }`}
+                                                                >
+                                                                    {task.title}
+                                                                </h4>
+
+                                                                <div className="flex flex-wrap items-center gap-2.5 mt-2 text-sm">
+                                                                    <span className={`px-3 py-1 rounded-full border font-semibold ${categoryBadge(task.category)}`}>
+                                                                        {task.category}
+                                                                    </span>
+                                                                    <span className={`px-3 py-1 rounded-full border font-semibold ${priorityBadge(task.priority)}`}>
+                                                                        {task.priority}
+                                                                    </span>
+                                                                    <span className={`flex items-center gap-1.5 ${statusStyle}`}>
+                                                                        <Icon name={task.completed ? "check-circle-2" : "clock"} className="w-4 h-4" />
+                                                                        {statusLabel}
+                                                                        {task.dueDate ? ` · ${task.dueDate}` : ""}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="flex items-center gap-2 self-end sm:self-center">
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => startEdit(task)}
+                                                                className={`p-2.5 rounded-xl ${cardClasses} text-violet-600 dark:text-violet-400 cursor-pointer`}
+                                                                title="Edit Task"
+                                                            >
+                                                                <Icon name="edit-3" className="w-5 h-5" />
+                                                            </button>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => deleteTask(task.id)}
+                                                                className={`p-2.5 rounded-xl ${cardClasses} text-rose-600 dark:text-rose-400 cursor-pointer`}
+                                                                title="Delete Task"
+                                                            >
+                                                                <Icon name="trash-2" className="w-5 h-5" />
+                                                            </button>
+                                                        </div>
+                                                    </Reorder.Item>
+                                                );
+                                            })}
+                                        </AnimatePresence>
+                                    </Reorder.Group>
+                                )}
+                            </motion.section>
+                        )}
+
+                        {/* 5. Productivity Insights Analytics */}
+                        <motion.section
+                            initial={{ opacity: 0, y: 14 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            className={`${cardClasses} rounded-3xl p-6 sm:p-8 space-y-6`}
+                        >
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                <div>
+                                    <h2 className="font-extrabold">📈 Productivity Insights</h2>
+                                    <p className={`text-sm sm:text-base ${mutedClasses} mt-1`}>
+                                        Visualize your progress and stay motivated toward your goals.
+                                    </p>
+                                </div>
+                                <span className="text-4xl font-extrabold text-violet-600 dark:text-violet-400">
+                                    {stats.rate}%
+                                </span>
+                            </div>
+
+                            <div className="w-full h-4 rounded-full bg-slate-200 dark:bg-slate-900 overflow-hidden p-0.5">
+                                <motion.div
+                                    initial={{ width: 0 }}
+                                    animate={{ width: `${stats.rate}%` }}
+                                    transition={{ duration: 0.6, ease: "easeOut" }}
+                                    className="h-full rounded-full progress-gradient"
+                                />
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                                {[
+                                    { label: "Work", count: stats.byCategory.Work, color: "bg-violet-600" },
+                                    { label: "Study", count: stats.byCategory.Study, color: "bg-indigo-600" },
+                                    { label: "Personal", count: stats.byCategory.Personal, color: "bg-pink-500" }
+                                ].map((item) => {
+                                    const pct = stats.total === 0 ? 0 : Math.round((item.count / stats.total) * 100);
+                                    return (
+                                        <div key={item.label} className={`p-4 rounded-2xl ${subBoxClasses} space-y-2`}>
+                                            <div className="flex justify-between text-sm font-bold">
+                                                <span>{item.label}</span>
+                                                <span>{item.count} ({pct}%)</span>
+                                            </div>
+                                            <div className="w-full h-2.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                                                <div
+                                                    style={{ width: `${pct}%` }}
+                                                    className={`h-full rounded-full ${item.color} transition-all duration-500`}
+                                                />
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </motion.section>
+
+                        {/* 6. Motivational Quotes Section */}
+                        <section className={`${cardClasses} rounded-3xl p-6 text-center`}>
+                            <AnimatePresence mode="wait">
+                                <motion.p
+                                    key={quoteIndex}
+                                    initial={{ opacity: 0, y: 8 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -8 }}
+                                    transition={{ duration: 0.35 }}
+                                    className="text-base sm:text-lg font-semibold italic"
+                                >
+                                    “{QUOTES[quoteIndex]}”
+                                </motion.p>
+                            </AnimatePresence>
+                            <div className="flex justify-center gap-1.5 mt-3">
+                                {QUOTES.map((_, idx) => (
+                                    <button
+                                        type="button"
+                                        key={idx}
+                                        onClick={() => setQuoteIndex(idx)}
+                                        className={`h-2 rounded-full transition-all cursor-pointer ${
+                                            quoteIndex === idx ? "w-7 bg-violet-600 dark:bg-violet-400" : "w-2 bg-slate-300 dark:bg-slate-600"
+                                        }`}
+                                        aria-label={`Quote ${idx + 1}`}
+                                    />
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* Footer */}
+                        <footer className={`text-center text-sm ${mutedClasses} pb-6`}>
+                            Built with passion for productivity • TaskNova © 2026
+                        </footer>
+                    </main>
+
+                    {/* Toast Notification */}
+                    <AnimatePresence>
+                        {toast && (
+                            <motion.div
+                                key={toast.id}
+                                initial={{ opacity: 0, y: 30, scale: 0.92 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: 20, scale: 0.92 }}
+                                className={`fixed bottom-6 right-6 z-50 px-5 py-4 rounded-2xl ${cardClasses} border-violet-500 flex items-center gap-3 text-base font-bold`}
+                            >
+                                <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
+                                <span>{toast.message}</span>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<App />);
+    </script>
+</body>
+</html>
