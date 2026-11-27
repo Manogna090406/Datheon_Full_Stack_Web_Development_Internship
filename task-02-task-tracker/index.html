@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0" />
     <title>TaskNova — Turn Plans Into Progress</title>
 
-    <link rel="stylesheet" href="style.css?v=20261127g" />
+    <link rel="stylesheet" href="style.css?v=20261127h" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -388,23 +388,23 @@
                             </nav>
                         </div>
 
-                        <div className="pt-4 mt-4 border-t border-slate-200 dark:border-slate-700 space-y-3">
+                        <div className="pt-3.5 pb-1 mt-3 border-t border-slate-200 dark:border-slate-700 space-y-2.5">
                             <button
                                 type="button"
                                 onClick={toggleTheme}
-                                className={`w-full py-2 px-3.5 rounded-xl ${subBoxClasses} flex items-center justify-center gap-2 text-xs font-bold hover:border-violet-500 transition cursor-pointer`}
+                                className={`w-full py-2 px-3 rounded-xl ${subBoxClasses} flex items-center justify-center gap-2 text-xs font-bold hover:border-violet-500 transition cursor-pointer`}
                             >
                                 <span>{theme === "dark" ? "☀️" : "🌙"}</span>
                                 <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
                             </button>
 
-                            <div className="flex items-center gap-3 px-2 py-1.5 rounded-xl">
-                                <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-violet-600 to-pink-500 flex items-center justify-center text-white font-bold text-xs shadow-md shrink-0">
+                            <div className={`flex items-center gap-2.5 px-2.5 py-2 rounded-xl ${subBoxClasses}`}>
+                                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-violet-600 to-pink-500 flex items-center justify-center text-white font-bold text-[11px] shadow-sm shrink-0">
                                     TN
                                 </div>
                                 <div className="min-w-0 flex-1">
-                                    <p className="text-sm font-bold leading-tight truncate">TaskNova</p>
-                                    <p className={`text-xs leading-snug ${mutedClasses} truncate`}>
+                                    <p className="text-xs font-bold leading-tight truncate">TaskNova</p>
+                                    <p className={`text-[11px] leading-snug ${mutedClasses} truncate`}>
                                         {theme === "dark" ? "Dark Theme Active" : "Light Theme Active"}
                                     </p>
                                 </div>
