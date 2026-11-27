@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0" />
     <title>TaskNova — Turn Plans Into Progress</title>
 
-    <link rel="stylesheet" href="style.css?v=20261127d" />
+    <link rel="stylesheet" href="style.css?v=20261127g" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -282,19 +282,19 @@
                 <div className="min-h-screen flex flex-col lg:flex-row bg-[#F8FAFC] dark:bg-[#0F172A] text-[#0F172A] dark:text-[#F8FAFC]">
                     {/* Mobile Header */}
                     <div className="lg:hidden flex items-center justify-between p-4 bg-[#FFFFFF] dark:bg-[#1E293B] border-b border-slate-200 dark:border-slate-700 sticky top-0 z-40">
-                        <div className="flex items-center gap-2.5">
-                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-600 to-pink-500 flex items-center justify-center text-white font-extrabold text-lg shadow-md">
+                        <div className="flex items-center gap-2.5 min-w-0">
+                            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-600 to-pink-500 flex items-center justify-center text-white font-extrabold text-base shadow-md shrink-0">
                                 ✦
                             </div>
-                            <span className="font-extrabold text-2xl tracking-tight text-violet-600 dark:text-violet-400">
+                            <span className="font-extrabold text-lg tracking-tight text-violet-600 dark:text-violet-400 truncate">
                                 TaskNova
                             </span>
                         </div>
-                        <div className="flex items-center gap-2.5">
+                        <div className="flex items-center gap-2 shrink-0">
                             <button
                                 type="button"
                                 onClick={toggleTheme}
-                                className="w-11 h-11 rounded-full bg-gradient-to-r from-violet-500 to-pink-500 text-white flex items-center justify-center text-lg shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer"
+                                className="w-9 h-9 rounded-full bg-gradient-to-r from-violet-500 to-pink-500 text-white flex items-center justify-center text-sm shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer"
                                 aria-label="Toggle Theme"
                             >
                                 {theme === "dark" ? "☀️" : "🌙"}
@@ -302,31 +302,31 @@
                             <button
                                 type="button"
                                 onClick={() => setMobileMenuOpen((prev) => !prev)}
-                                className={`p-2.5 rounded-xl ${cardClasses} cursor-pointer`}
+                                className={`p-2 rounded-xl ${cardClasses} cursor-pointer`}
                                 aria-label="Toggle Menu"
                             >
-                                <Icon name={mobileMenuOpen ? "x" : "menu"} className="w-6 h-6" />
+                                <Icon name={mobileMenuOpen ? "x" : "menu"} className="w-5 h-5" />
                             </button>
                         </div>
                     </div>
 
                     {/* Responsive Sidebar Navigation */}
                     <aside
-                        className={`fixed lg:sticky top-0 left-0 z-30 h-screen w-80 p-6 flex flex-col justify-between bg-[#FFFFFF] dark:bg-[#1E293B] text-[#0F172A] dark:text-[#F8FAFC] border-r border-slate-200 dark:border-slate-700 transition-transform duration-300 ${
+                        className={`fixed lg:sticky top-0 left-0 z-30 h-screen w-72 p-5 flex flex-col justify-between bg-[#FFFFFF] dark:bg-[#1E293B] text-[#0F172A] dark:text-[#F8FAFC] border-r border-slate-200 dark:border-slate-700 transition-transform duration-300 shrink-0 ${
                             mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
                         }`}
                     >
-                        <div>
-                            <div className="flex items-center justify-between gap-3 mb-8">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-600 to-pink-500 flex items-center justify-center text-white text-2xl font-extrabold shadow-lg">
+                        <div className="min-w-0">
+                            <div className="flex items-center justify-between gap-2.5 mb-6">
+                                <div className="flex items-center gap-2.5 min-w-0">
+                                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-600 to-pink-500 flex items-center justify-center text-white text-lg font-extrabold shadow-lg shrink-0">
                                         ✦
                                     </div>
-                                    <div>
-                                        <h2 className="text-2xl font-extrabold tracking-tight text-violet-600 dark:text-violet-400">
+                                    <div className="min-w-0">
+                                        <div className="text-lg font-extrabold tracking-tight text-violet-600 dark:text-violet-400 leading-tight truncate">
                                             TaskNova
-                                        </h2>
-                                        <p className={`text-sm font-medium ${mutedClasses}`}>
+                                        </div>
+                                        <p className={`text-xs font-medium leading-snug ${mutedClasses}`}>
                                             Turn Plans Into Progress
                                         </p>
                                     </div>
@@ -335,7 +335,7 @@
                                 <button
                                     type="button"
                                     onClick={toggleTheme}
-                                    className="hidden lg:flex w-12 h-12 rounded-full bg-gradient-to-r from-violet-500 to-pink-500 text-white items-center justify-center text-xl shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer shrink-0"
+                                    className="hidden lg:flex w-9 h-9 rounded-full bg-gradient-to-r from-violet-500 to-pink-500 text-white items-center justify-center text-sm shadow-lg hover:scale-110 transition-all duration-300 cursor-pointer shrink-0"
                                     aria-label="Toggle Theme"
                                     title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
                                 >
@@ -343,10 +343,10 @@
                                 </button>
                             </div>
 
-                            <p className={`text-xs font-bold uppercase tracking-wider ${mutedClasses} px-3 mb-3`}>
+                            <p className={`text-[11px] font-bold uppercase tracking-wider ${mutedClasses} px-3 mb-2.5`}>
                                 Workspace
                             </p>
-                            <nav className="space-y-1.5">
+                            <nav className="space-y-1">
                                 {[
                                     { id: "dashboard", label: "🏠 Dashboard", filter: "all" },
                                     { id: "all", label: "📋 All Tasks", filter: "all" },
@@ -361,7 +361,7 @@
                                             type="button"
                                             key={item.id}
                                             onClick={() => handleNavClick(item.id, item.filter)}
-                                            className={`w-full flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-semibold transition-all cursor-pointer ${
+                                            className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer ${
                                                 active
                                                     ? "bg-violet-600 text-white shadow-md"
                                                     : `hover:bg-slate-100 dark:hover:bg-slate-800 ${mutedClasses}`
@@ -369,14 +369,14 @@
                                         >
                                             <span>{item.label}</span>
                                             {item.id === "active" && (
-                                                <span className={`text-xs px-2.5 py-0.5 rounded-full font-bold ${
+                                                <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${
                                                     active ? "bg-white/20 text-white" : "bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300"
                                                 }`}>
                                                     {stats.inProgress}
                                                 </span>
                                             )}
                                             {item.id === "completed" && (
-                                                <span className={`text-xs px-2.5 py-0.5 rounded-full font-bold ${
+                                                <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${
                                                     active ? "bg-white/20 text-white" : "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300"
                                                 }`}>
                                                     {stats.completed}
@@ -388,23 +388,23 @@
                             </nav>
                         </div>
 
-                        <div className="pt-5 border-t border-slate-200 dark:border-slate-700 space-y-4">
+                        <div className="pt-4 mt-4 border-t border-slate-200 dark:border-slate-700 space-y-3">
                             <button
                                 type="button"
                                 onClick={toggleTheme}
-                                className={`w-full py-3 px-4 rounded-xl ${subBoxClasses} flex items-center justify-center gap-2.5 text-base font-bold hover:border-violet-500 transition cursor-pointer`}
+                                className={`w-full py-2 px-3.5 rounded-xl ${subBoxClasses} flex items-center justify-center gap-2 text-xs font-bold hover:border-violet-500 transition cursor-pointer`}
                             >
                                 <span>{theme === "dark" ? "☀️" : "🌙"}</span>
                                 <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
                             </button>
 
-                            <div className="flex items-center gap-3 px-1">
-                                <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-violet-600 to-pink-500 flex items-center justify-center text-white font-bold text-base shadow-md">
+                            <div className="flex items-center gap-3 px-2 py-1.5 rounded-xl">
+                                <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-violet-600 to-pink-500 flex items-center justify-center text-white font-bold text-xs shadow-md shrink-0">
                                     TN
                                 </div>
-                                <div>
-                                    <p className="text-base font-bold leading-tight">TaskNova</p>
-                                    <p className={`text-sm ${mutedClasses}`}>
+                                <div className="min-w-0 flex-1">
+                                    <p className="text-sm font-bold leading-tight truncate">TaskNova</p>
+                                    <p className={`text-xs leading-snug ${mutedClasses} truncate`}>
                                         {theme === "dark" ? "Dark Theme Active" : "Light Theme Active"}
                                     </p>
                                 </div>
@@ -423,7 +423,7 @@
                         >
                             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                                 <div>
-                                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold bg-violet-100 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 border border-violet-300 dark:border-violet-500/35 mb-3">
+                                    <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold bg-violet-100 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 border border-violet-300 dark:border-violet-500/35 mb-3">
                                         👋 Welcome Back
                                     </span>
                                     <h1 className="font-extrabold tracking-tight mb-2">
@@ -432,13 +432,13 @@
                                             — Turn Plans Into Progress
                                         </span>
                                     </h1>
-                                    <p className={`text-base sm:text-lg ${mutedClasses} max-w-2xl`}>
+                                    <p className={`text-sm sm:text-base ${mutedClasses} max-w-2xl`}>
                                         Transform your ideas into achievements. Organize, track, and complete every task with confidence.
                                     </p>
                                 </div>
 
-                                <div className={`px-4 py-3 rounded-2xl ${subBoxClasses} text-sm font-bold flex items-center gap-2 shrink-0`}>
-                                    <Icon name="calendar" className="w-5 h-5 text-violet-600 dark:text-violet-400" />
+                                <div className={`px-4 py-2.5 rounded-2xl ${subBoxClasses} text-xs font-bold flex items-center gap-2 shrink-0`}>
+                                    <Icon name="calendar" className="w-4 h-4 text-violet-600 dark:text-violet-400" />
                                     {new Date().toLocaleDateString("en-IN", {
                                         weekday: "short",
                                         day: "numeric",
@@ -457,21 +457,21 @@
                                 className={`${cardClasses} rounded-3xl p-6 sm:p-8 space-y-4`}
                             >
                                 <h2 className="font-bold">⚙ Workspace Settings</h2>
-                                <p className={`text-base ${mutedClasses}`}>
+                                <p className={`text-sm ${mutedClasses}`}>
                                     Switch between Light and Dark theme or clear saved tasks from localStorage.
                                 </p>
                                 <div className="flex flex-wrap gap-4 pt-2">
                                     <button
                                         type="button"
                                         onClick={toggleTheme}
-                                        className="px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-base font-semibold transition cursor-pointer"
+                                        className="px-5 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition cursor-pointer"
                                     >
                                         Switch to {theme === "dark" ? "Light" : "Dark"} Theme
                                     </button>
                                     <button
                                         type="button"
                                         onClick={clearAllTasks}
-                                        className="px-6 py-3 rounded-xl bg-rose-100 dark:bg-rose-500/20 hover:bg-rose-200 dark:hover:bg-rose-500/30 border border-rose-300 dark:border-rose-500/40 text-rose-700 dark:text-rose-300 text-base font-semibold transition cursor-pointer"
+                                        className="px-5 py-2.5 rounded-xl bg-rose-100 dark:bg-rose-500/20 hover:bg-rose-200 dark:hover:bg-rose-500/30 border border-rose-300 dark:border-rose-500/40 text-rose-700 dark:text-rose-300 text-sm font-semibold transition cursor-pointer"
                                     >
                                         Clear All Tasks
                                     </button>
@@ -488,15 +488,15 @@
                                 className={`${hoverCardClasses} rounded-2xl p-6`}
                             >
                                 <div className="flex items-center justify-between mb-3">
-                                    <span className="text-base font-bold">📋 Total Tasks</span>
-                                    <span className="w-10 h-10 rounded-xl bg-violet-100 dark:bg-violet-500/20 text-violet-600 dark:text-violet-400 flex items-center justify-center">
-                                        <Icon name="layers" className="w-5 h-5" />
+                                    <span className="text-sm font-bold">📋 Total Tasks</span>
+                                    <span className="w-9 h-9 rounded-xl bg-violet-100 dark:bg-violet-500/20 text-violet-600 dark:text-violet-400 flex items-center justify-center">
+                                        <Icon name="layers" className="w-4 h-4" />
                                     </span>
                                 </div>
-                                <h2 className="text-5xl font-extrabold text-violet-600 dark:text-violet-400 mb-1">
+                                <div className="text-5xl font-extrabold text-violet-600 dark:text-violet-400 mb-1">
                                     {stats.total}
-                                </h2>
-                                <p className={`text-sm ${mutedClasses}`}>Keep track of all your productivity goals.</p>
+                                </div>
+                                <p className={`text-xs ${mutedClasses}`}>Keep track of all your productivity goals.</p>
                             </motion.div>
 
                             <motion.div
@@ -506,15 +506,15 @@
                                 className={`${hoverCardClasses} rounded-2xl p-6`}
                             >
                                 <div className="flex items-center justify-between mb-3">
-                                    <span className="text-base font-bold">⚡ In Progress</span>
-                                    <span className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center">
-                                        <Icon name="zap" className="w-5 h-5" />
+                                    <span className="text-sm font-bold">⚡ In Progress</span>
+                                    <span className="w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                                        <Icon name="zap" className="w-4 h-4" />
                                     </span>
                                 </div>
-                                <h2 className="text-5xl font-extrabold text-amber-600 dark:text-amber-400 mb-1">
+                                <div className="text-5xl font-extrabold text-amber-600 dark:text-amber-400 mb-1">
                                     {stats.inProgress}
-                                </h2>
-                                <p className={`text-sm ${mutedClasses}`}>Tasks currently demanding your attention.</p>
+                                </div>
+                                <p className={`text-xs ${mutedClasses}`}>Tasks currently demanding your attention.</p>
                             </motion.div>
 
                             <motion.div
@@ -524,15 +524,15 @@
                                 className={`${hoverCardClasses} rounded-2xl p-6`}
                             >
                                 <div className="flex items-center justify-between mb-3">
-                                    <span className="text-base font-bold">✅ Achievements</span>
-                                    <span className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
-                                        <Icon name="trophy" className="w-5 h-5" />
+                                    <span className="text-sm font-bold">✅ Achievements</span>
+                                    <span className="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                                        <Icon name="trophy" className="w-4 h-4" />
                                     </span>
                                 </div>
-                                <h2 className="text-5xl font-extrabold text-emerald-600 dark:text-emerald-400 mb-1">
+                                <div className="text-5xl font-extrabold text-emerald-600 dark:text-emerald-400 mb-1">
                                     {stats.completed}
-                                </h2>
-                                <p className={`text-sm ${mutedClasses}`}>Successfully completed milestones.</p>
+                                </div>
+                                <p className={`text-xs ${mutedClasses}`}>Successfully completed milestones.</p>
                             </motion.div>
                         </section>
 
@@ -548,7 +548,7 @@
                                     <h2 className="font-extrabold">
                                         {editingId ? "✏️ Update Mission" : "Create New Mission 🚀"}
                                     </h2>
-                                    <p className={`text-sm sm:text-base ${mutedClasses} mt-1`}>
+                                    <p className={`text-xs sm:text-sm ${mutedClasses} mt-1`}>
                                         Plan smarter, stay organized, and accomplish more every day.
                                     </p>
                                 </div>
@@ -560,13 +560,13 @@
                                         onChange={(e) => setTitle(e.target.value)}
                                         placeholder="Enter a new mission..."
                                         required
-                                        className={`md:col-span-5 px-4 py-3.5 rounded-xl ${inputClasses} text-base`}
+                                        className={`md:col-span-5 px-4 py-3 rounded-xl ${inputClasses} text-sm`}
                                     />
 
                                     <select
                                         value={category}
                                         onChange={(e) => setCategory(e.target.value)}
-                                        className={`md:col-span-2 px-3.5 py-3.5 rounded-xl ${inputClasses} text-base`}
+                                        className={`md:col-span-2 px-3.5 py-3 rounded-xl ${inputClasses} text-sm`}
                                     >
                                         <option value="Work">Work</option>
                                         <option value="Study">Study</option>
@@ -576,7 +576,7 @@
                                     <select
                                         value={priority}
                                         onChange={(e) => setPriority(e.target.value)}
-                                        className={`md:col-span-2 px-3.5 py-3.5 rounded-xl ${inputClasses} text-base`}
+                                        className={`md:col-span-2 px-3.5 py-3 rounded-xl ${inputClasses} text-sm`}
                                     >
                                         <option value="High">High</option>
                                         <option value="Medium">Medium</option>
@@ -587,7 +587,7 @@
                                         type="date"
                                         value={dueDate}
                                         onChange={(e) => setDueDate(e.target.value)}
-                                        className={`md:col-span-3 px-3.5 py-3.5 rounded-xl ${inputClasses} text-base`}
+                                        className={`md:col-span-3 px-3.5 py-3 rounded-xl ${inputClasses} text-sm`}
                                     />
 
                                     <div className="md:col-span-12 flex flex-wrap items-center justify-end gap-3 pt-1">
@@ -598,14 +598,14 @@
                                                     setEditingId(null);
                                                     setTitle("");
                                                 }}
-                                                className={`px-5 py-3 rounded-xl ${subBoxClasses} text-base font-semibold cursor-pointer`}
+                                                className={`px-5 py-2.5 rounded-xl ${subBoxClasses} text-sm font-semibold cursor-pointer`}
                                             >
                                                 Cancel
                                             </button>
                                         )}
                                         <button
                                             type="submit"
-                                            className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-violet-600 via-indigo-600 to-pink-600 hover:opacity-95 text-white text-base font-bold shadow-lg transition cursor-pointer"
+                                            className="px-6 py-3 rounded-xl bg-gradient-to-r from-violet-600 via-indigo-600 to-pink-600 hover:opacity-95 text-white text-sm font-bold shadow-lg transition cursor-pointer"
                                         >
                                             {editingId ? "✓ Save Changes" : "✨ Create Task"}
                                         </button>
@@ -624,15 +624,15 @@
                             >
                                 <div className="flex flex-col md:flex-row gap-3.5 justify-between">
                                     <div className="relative flex-1">
-                                        <span className={`absolute left-4 top-4 ${mutedClasses}`}>
-                                            <Icon name="search" className="w-5 h-5" />
+                                        <span className={`absolute left-3.5 top-3.5 ${mutedClasses}`}>
+                                            <Icon name="search" className="w-4 h-4" />
                                         </span>
                                         <input
                                             type="text"
                                             value={searchQuery}
                                             onChange={(e) => setSearchQuery(e.target.value)}
                                             placeholder="Search tasks by title or category..."
-                                            className={`w-full pl-11 pr-4 py-3 rounded-xl ${inputClasses} text-base`}
+                                            className={`w-full pl-10 pr-4 py-2.5 rounded-xl ${inputClasses} text-sm`}
                                         />
                                     </div>
 
@@ -642,7 +642,7 @@
                                                 type="button"
                                                 key={cat}
                                                 onClick={() => setCategoryFilter(cat)}
-                                                className={`px-4 py-2.5 rounded-xl text-sm font-bold border transition cursor-pointer ${
+                                                className={`px-3.5 py-2 rounded-xl text-xs font-bold border transition cursor-pointer ${
                                                     categoryFilter === cat
                                                         ? "bg-violet-600 border-violet-600 text-white"
                                                         : `${subBoxClasses} ${mutedClasses}`
@@ -665,7 +665,7 @@
                                                 type="button"
                                                 key={tab.id}
                                                 onClick={() => setStatusFilter(tab.id)}
-                                                className={`px-3.5 py-2 rounded-lg text-sm font-bold transition cursor-pointer ${
+                                                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
                                                     statusFilter === tab.id
                                                         ? "bg-violet-600 text-white"
                                                         : `${mutedClasses} hover:bg-slate-100 dark:hover:bg-slate-800`
@@ -675,16 +675,16 @@
                                             </button>
                                         ))}
                                     </div>
-                                    <span className={`text-sm ${mutedClasses}`}>
+                                    <span className={`text-xs ${mutedClasses}`}>
                                         {!isFiltered ? "Drag items to reorder" : `Showing ${filteredTasks.length} tasks`}
                                     </span>
                                 </div>
 
                                 {filteredTasks.length === 0 ? (
                                     <div className="text-center py-14 space-y-2">
-                                        <div className="text-5xl">📋</div>
+                                        <div className="text-4xl">📋</div>
                                         <h3 className="font-bold">No tasks yet</h3>
-                                        <p className={`text-sm ${mutedClasses}`}>
+                                        <p className={`text-xs ${mutedClasses}`}>
                                             Create a task above to start tracking your progress.
                                         </p>
                                     </div>
@@ -712,14 +712,14 @@
                                                         initial={{ opacity: 0, y: 10 }}
                                                         animate={{ opacity: 1, y: 0 }}
                                                         exit={{ opacity: 0, scale: 0.96 }}
-                                                        className={`${subBoxClasses} rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
+                                                        className={`${subBoxClasses} rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
                                                             task.completed ? "opacity-80" : ""
                                                         }`}
                                                     >
                                                         <div className="flex items-start sm:items-center gap-3.5 flex-1 min-w-0">
                                                             {!isFiltered && (
                                                                 <span className={`cursor-grab active:cursor-grabbing ${mutedClasses}`}>
-                                                                    <Icon name="grip-vertical" className="w-5 h-5" />
+                                                                    <Icon name="grip-vertical" className="w-4 h-4" />
                                                                 </span>
                                                             )}
 
@@ -727,7 +727,7 @@
                                                                 type="button"
                                                                 onClick={() => toggleComplete(task.id)}
                                                                 aria-label={task.completed ? "Mark as due" : "Mark as completed"}
-                                                                className={`w-7 h-7 rounded-md border-2 flex items-center justify-center shrink-0 transition cursor-pointer ${
+                                                                className={`w-6 h-6 rounded-md border-2 flex items-center justify-center shrink-0 transition cursor-pointer ${
                                                                     task.completed
                                                                         ? "bg-emerald-500 border-emerald-500 text-white"
                                                                         : "bg-white dark:bg-slate-800 border-slate-400 dark:border-slate-500 text-transparent hover:border-violet-500"
@@ -738,22 +738,22 @@
 
                                                             <div className="min-w-0 flex-1">
                                                                 <h4
-                                                                    className={`text-xl font-extrabold truncate ${
+                                                                    className={`font-extrabold truncate ${
                                                                         task.completed ? `line-through ${mutedClasses}` : "text-[#0F172A] dark:text-[#F8FAFC]"
                                                                     }`}
                                                                 >
                                                                     {task.title}
                                                                 </h4>
 
-                                                                <div className="flex flex-wrap items-center gap-2.5 mt-2 text-sm">
-                                                                    <span className={`px-3 py-1 rounded-full border font-semibold ${categoryBadge(task.category)}`}>
+                                                                <div className="flex flex-wrap items-center gap-2 mt-1.5 text-xs">
+                                                                    <span className={`px-2.5 py-0.5 rounded-full border font-semibold ${categoryBadge(task.category)}`}>
                                                                         {task.category}
                                                                     </span>
-                                                                    <span className={`px-3 py-1 rounded-full border font-semibold ${priorityBadge(task.priority)}`}>
+                                                                    <span className={`px-2.5 py-0.5 rounded-full border font-semibold ${priorityBadge(task.priority)}`}>
                                                                         {task.priority}
                                                                     </span>
-                                                                    <span className={`flex items-center gap-1.5 ${statusStyle}`}>
-                                                                        <Icon name={task.completed ? "check-circle-2" : "clock"} className="w-4 h-4" />
+                                                                    <span className={`flex items-center gap-1 ${statusStyle}`}>
+                                                                        <Icon name={task.completed ? "check-circle-2" : "clock"} className="w-3.5 h-3.5" />
                                                                         {statusLabel}
                                                                         {task.dueDate ? ` · ${task.dueDate}` : ""}
                                                                     </span>
@@ -765,18 +765,18 @@
                                                             <button
                                                                 type="button"
                                                                 onClick={() => startEdit(task)}
-                                                                className={`p-2.5 rounded-xl ${cardClasses} text-violet-600 dark:text-violet-400 cursor-pointer`}
+                                                                className={`p-2 rounded-xl ${cardClasses} text-violet-600 dark:text-violet-400 cursor-pointer`}
                                                                 title="Edit Task"
                                                             >
-                                                                <Icon name="edit-3" className="w-5 h-5" />
+                                                                <Icon name="edit-3" className="w-4 h-4" />
                                                             </button>
                                                             <button
                                                                 type="button"
                                                                 onClick={() => deleteTask(task.id)}
-                                                                className={`p-2.5 rounded-xl ${cardClasses} text-rose-600 dark:text-rose-400 cursor-pointer`}
+                                                                className={`p-2 rounded-xl ${cardClasses} text-rose-600 dark:text-rose-400 cursor-pointer`}
                                                                 title="Delete Task"
                                                             >
-                                                                <Icon name="trash-2" className="w-5 h-5" />
+                                                                <Icon name="trash-2" className="w-4 h-4" />
                                                             </button>
                                                         </div>
                                                     </Reorder.Item>
@@ -798,13 +798,13 @@
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                                 <div>
                                     <h2 className="font-extrabold">📈 Productivity Insights</h2>
-                                    <p className={`text-sm sm:text-base ${mutedClasses} mt-1`}>
+                                    <p className={`text-xs sm:text-sm ${mutedClasses} mt-1`}>
                                         Visualize your progress and stay motivated toward your goals.
                                     </p>
                                 </div>
-                                <span className="text-4xl font-extrabold text-violet-600 dark:text-violet-400">
+                                <div className="text-3xl font-extrabold text-violet-600 dark:text-violet-400">
                                     {stats.rate}%
-                                </span>
+                                </div>
                             </div>
 
                             <div className="w-full h-4 rounded-full bg-slate-200 dark:bg-slate-900 overflow-hidden p-0.5">
@@ -825,11 +825,11 @@
                                     const pct = stats.total === 0 ? 0 : Math.round((item.count / stats.total) * 100);
                                     return (
                                         <div key={item.label} className={`p-4 rounded-2xl ${subBoxClasses} space-y-2`}>
-                                            <div className="flex justify-between text-sm font-bold">
+                                            <div className="flex justify-between text-xs font-bold">
                                                 <span>{item.label}</span>
                                                 <span>{item.count} ({pct}%)</span>
                                             </div>
-                                            <div className="w-full h-2.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                                            <div className="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
                                                 <div
                                                     style={{ width: `${pct}%` }}
                                                     className={`h-full rounded-full ${item.color} transition-all duration-500`}
@@ -850,7 +850,7 @@
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -8 }}
                                     transition={{ duration: 0.35 }}
-                                    className="text-base sm:text-lg font-semibold italic"
+                                    className="text-sm sm:text-base font-semibold italic"
                                 >
                                     “{QUOTES[quoteIndex]}”
                                 </motion.p>
@@ -861,8 +861,8 @@
                                         type="button"
                                         key={idx}
                                         onClick={() => setQuoteIndex(idx)}
-                                        className={`h-2 rounded-full transition-all cursor-pointer ${
-                                            quoteIndex === idx ? "w-7 bg-violet-600 dark:bg-violet-400" : "w-2 bg-slate-300 dark:bg-slate-600"
+                                        className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                                            quoteIndex === idx ? "w-6 bg-violet-600 dark:bg-violet-400" : "w-1.5 bg-slate-300 dark:bg-slate-600"
                                         }`}
                                         aria-label={`Quote ${idx + 1}`}
                                     />
@@ -871,7 +871,7 @@
                         </section>
 
                         {/* Footer */}
-                        <footer className={`text-center text-sm ${mutedClasses} pb-6`}>
+                        <footer className={`text-center text-xs ${mutedClasses} pb-6`}>
                             Built with passion for productivity • TaskNova © 2026
                         </footer>
                     </main>
@@ -884,9 +884,9 @@
                                 initial={{ opacity: 0, y: 30, scale: 0.92 }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: 20, scale: 0.92 }}
-                                className={`fixed bottom-6 right-6 z-50 px-5 py-4 rounded-2xl ${cardClasses} border-violet-500 flex items-center gap-3 text-base font-bold`}
+                                className={`fixed bottom-6 right-6 z-50 px-5 py-3.5 rounded-2xl ${cardClasses} border-violet-500 flex items-center gap-3 text-sm font-bold`}
                             >
-                                <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
+                                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
                                 <span>{toast.message}</span>
                             </motion.div>
                         )}
